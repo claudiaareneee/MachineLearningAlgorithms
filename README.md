@@ -1,4 +1,4 @@
-# MachineLearningAlgorithms
+# Machine Learning Algorithms
 
 This is a project created for CSE 4633/6633 Introduction to Artificial Intelligence. The objective is to compare different machine learning algorithms and determine their effectiveness.
 
