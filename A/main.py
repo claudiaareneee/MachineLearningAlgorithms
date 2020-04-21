@@ -16,3 +16,7 @@ dtree.plotDecisionTree(iris, model)
 print("Performing K Nearest Neighbors")
 model = knn.kNearestNeighbors(iris, 3)
 knn.plotKNearestNeighbors(iris, model)
+
+# TODO: Decision Tree
+
+# TODO: k Means Clustering
