@@ -2,6 +2,7 @@
 from sklearn import datasets
 import knn as knn
 import decisiontree as dtree
+import backpropagation as bp
 
 iris = datasets.load_iris()
 
@@ -17,6 +18,8 @@ print("Performing K Nearest Neighbors")
 model = knn.kNearestNeighbors(iris, 3)
 knn.plotKNearestNeighbors(iris, model)
 
-# TODO: Decision Tree
+print("Performing Back propagation")
+model = bp.backPropagation(iris)
+bp.plotBackPropagation(iris, model)
 
 # TODO: k Means Clustering
