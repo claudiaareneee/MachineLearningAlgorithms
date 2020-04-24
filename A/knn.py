@@ -8,17 +8,16 @@ from sklearn.neighbors import KNeighborsClassifier
 def kNearestNeighbors(iris, k):
     model = KNeighborsClassifier(n_neighbors=k)
     # model = model.fit(iris.data, iris.target)
-    X = iris.data[:, :2]
+    X = iris.data
     y = iris.target
 
     model = model.fit(X, y)
     return model
 
-def plotKNearestNeighbors(iris, model):
+def plotKNearestNeighbors(X, y, xlabel, ylabel, model):
     h = .02  # step size in the mesh
 
-    X = iris.data[:, :2]
-    y = iris.target
+    model.fit(X, y)
 
     # Create color maps
     cmap_light = ListedColormap(['orange', 'cyan', 'cornflowerblue'])
@@ -41,5 +40,7 @@ def plotKNearestNeighbors(iris, model):
     plt.xlim(xx.min(), xx.max())
     plt.ylim(yy.min(), yy.max())
     plt.title("3-Class classification (k = %i, weights = '%s')" % (3, 0))
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
 
     plt.show()
