@@ -1,5 +1,6 @@
 # pylint: disable=maybe-no-member
 from sklearn import datasets
+from sklearn.model_selection import train_test_split
 import knn as knn
 import kmeansclustering as kmeansclustering
 import matplotlib.pyplot as plt
@@ -84,7 +85,7 @@ if __name__ == "__main__":
     plotClf(model, iris, "Decision Tree Petal", plotSepal=False)
     plotClf(model, iris, "Decision Tree Sepal", plotSepal=True)
 
-    print("Performing Decision Tree Max Depth   ", end="    ")
+    print("Performing Decision Tree Max Depth 4 ", end="    ")
     model = dtree.decisionTree(iris, max_depth=4)
     makeTestPrediction(model, iris)
     plotClf(model, iris, "Decision Tree Petal, Max depth = 4", plotSepal=False)
@@ -102,9 +103,11 @@ if __name__ == "__main__":
     kmeansclustering.plotKMeansClustering(model, iris, "K Means Clustering Petal", plotSepal=False)
     kmeansclustering.plotKMeansClustering(model, iris, "K Means Clustering Sepal", plotSepal=True)
     
-
-    # print("Performing Back propagation", end="    ")
-    # model = bp.backPropagation(iris)
-    # bp.plotBackPropagation(iris, model)
+    print("Performing Back propagation          ", end="    ")
+    X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size = 0.20)
+    model = bp.backPropagation(X_train, X_test, y_train, y_test)
+    makeTestPrediction(model, iris)
+    plotClf(model, iris, "Back propagation Sepal", plotSepal=True)
+    plotClf(model, iris, "Back propagation Petal", plotSepal=False)
 
 # TODO: k Means Clustering
