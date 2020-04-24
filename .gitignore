@@ -141,3 +141,5 @@ cython_debug/
 iris
 iris.pdf
 
+# Images
+A/Images/*
