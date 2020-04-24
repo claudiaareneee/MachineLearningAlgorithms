@@ -9,6 +9,10 @@ import numpy as np
 
 iris = datasets.load_iris()
 
+def makeTestPrediction(model, iris):
+    result = model.predict([[3, 5, 4, 2],])# What is the iris class for 3cm x 5cm sepal and 4cm x 2cm petal?
+    print ("3cm x 5cm sepal and 4cm x 2cm petal: " + str(iris.target_names[result]))
+
 def plotData(x, y, title):
     formatter = plt.FuncFormatter(lambda i, *args: iris.target_names[int(i)])
 
@@ -71,23 +75,26 @@ if __name__ == "__main__":
     plotData(2,3,"Iris classification according to Petal measurements")
 
 
-    print("Performing Decision Tree")
+    print("Performing Decision Tree             ", end="    ")
     model = dtree.decisionTree(iris)
-    # dtree.plotDecisionTree(iris, model)
+    makeTestPrediction(model, iris)
+    dtree.plotDecisionTree(iris, model)
     plotClf(model, iris, "Decision Tree Petal", False)
     plotClf(model, iris, "Decision Tree Sepal", True)
 
-    print("Performing Decision Tree Max Depth")
+    print("Performing Decision Tree Max Depth   ", end="    ")
     model = dtree.decisionTree(iris, max_depth=4)
+    makeTestPrediction(model, iris)
     plotClf(model, iris, "Decision Tree Petal, Max depth = 4", False)
     plotClf(model, iris, "Decision Tree Sepal, Max depth = 4", True)
 
-    print("Performing K Nearest Neighbors")
+    print("Performing K Nearest Neighbors       ", end="    ")
     model = knn.kNearestNeighbors(iris, 3)
+    makeTestPrediction(model, iris)
     plotClf(model, iris, "Knn Petal", False)
     plotClf(model, iris, "Knn Sepal", True)
 
-    # print("Performing Back propagation")
+    # print("Performing Back propagation", end="    ")
     # model = bp.backPropagation(iris)
     # bp.plotBackPropagation(iris, model)
 
