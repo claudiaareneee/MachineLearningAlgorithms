@@ -27,7 +27,7 @@ def plotData(x, y, title):
     plt.clf()
     # plt.show()
 
-def plotClf(model, iris, title, plotSepal=True, supervised=True):
+def plotClf(model, iris, title, plotSepal=True):
     plt.clf()
     h = .02  # step size in the mesh
 
@@ -40,10 +40,7 @@ def plotClf(model, iris, title, plotSepal=True, supervised=True):
         X = iris.data[:, 2:]
         y = iris.target
 
-    if supervised:
-        model.fit(X, y)
-    else: 
-        model.fit(X)
+    model.fit(X, y)    
 
     # Create color maps
     cmap_light = ListedColormap(['orange', 'cyan', 'cornflowerblue'])
