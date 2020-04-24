@@ -13,4 +13,4 @@ def plotDecisionTree(iris, model):
 
     dot_data = tree.export_graphviz(model, out_file=None) 
     graph = graphviz.Source(dot_data) 
-    graph.render("iris") 
+    graph.render("A/images/decisiontree") 

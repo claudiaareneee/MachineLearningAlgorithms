@@ -42,5 +42,5 @@ def plotKNearestNeighbors(X, y, xlabel, ylabel, model):
     plt.title("3-Class classification (k = %i, weights = '%s')" % (3, 0))
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
-
-    plt.show()
+    plt.savefig("A/images/knn_" + xlabel + "_" + ylabel)
+    # plt.show()

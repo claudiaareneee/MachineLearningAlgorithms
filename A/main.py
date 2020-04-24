@@ -8,7 +8,7 @@ import backpropagation as bp
 
 iris = datasets.load_iris()
 
-def printData(x, y, title):
+def plotData(x, y, title):
     formatter = plt.FuncFormatter(lambda i, *args: iris.target_names[int(i)])
 
     plt.scatter(iris.data[:, x], iris.data[:, y], c=iris.target)
@@ -16,15 +16,16 @@ def printData(x, y, title):
     plt.xlabel(iris.feature_names[x])
     plt.ylabel(iris.feature_names[y])
     plt.title(title)
-    plt.show()
+    plt.savefig("A/images/" + title)
+    # plt.show()
 
 if __name__ == "__main__":
     print(iris.data)
     print(iris.target)
     print(iris.target_names)
 
-    # printData(0,1,"Iris classification according to Sepal measurements")
-    # printData(2,3,"Iris classification according to Petal measurements")
+    plotData(0,1,"Iris classification according to Sepal measurements")
+    plotData(2,3,"Iris classification according to Petal measurements")
 
 
     print("Performing Decision Tree")
