@@ -8,8 +8,14 @@ from matplotlib.colors import ListedColormap
 import decisiontree as dtree
 import backpropagation as bp
 import numpy as np
+import copy
 
 iris = datasets.load_iris()
+
+irisSplit = copy.deepcopy(iris)
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size = 0.20)
+irisSplit.data = X_train
+irisSplit.target = y_train
 
 def makeTestPrediction(model, iris):
     value = [5, 3.4, 1.6, 0.4]
@@ -70,9 +76,19 @@ def plotClf(model, iris, title, plotSepal=True):
     # plt.show()
 
 if __name__ == "__main__":
+    print("Iris data:")
     print(iris.data)
+    print("Iris target:")
     print(iris.target)
+    print("Iris target names:")
     print(iris.target_names)
+
+    print("IrisSplit data:")
+    print(irisSplit.data)
+    print("IrisSplit target:")
+    print(irisSplit.target)
+    print("IrisSplit target names:")
+    print(irisSplit.target_names)
 
     plotData(0,1,"Iris classification according to Sepal measurements")
     plotData(2,3,"Iris classification according to Petal measurements")
@@ -104,10 +120,40 @@ if __name__ == "__main__":
     kmeansclustering.plotKMeansClustering(model, iris, "K Means Clustering Sepal", plotSepal=True)
     
     print("Performing Back propagation          ", end="    ")
-    X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size = 0.20)
     model = bp.backPropagation(X_train, X_test, y_train, y_test)
     makeTestPrediction(model, iris)
     plotClf(model, iris, "Back propagation Sepal", plotSepal=True)
     plotClf(model, iris, "Back propagation Petal", plotSepal=False)
+
+    print("Split Performing Decision Tree             ", end="    ")
+    model = dtree.decisionTree(irisSplit)
+    makeTestPrediction(model, irisSplit)
+    dtree.plotDecisionTree(irisSplit, model)
+    plotClf(model, irisSplit, "Split Decision Tree Petal", plotSepal=False)
+    plotClf(model, irisSplit, "Split Decision Tree Sepal", plotSepal=True)
+
+    print("Split Performing Decision Tree Max Depth 4 ", end="    ")
+    model = dtree.decisionTree(irisSplit, max_depth=4)
+    makeTestPrediction(model, irisSplit)
+    plotClf(model, irisSplit, "Split Decision Tree Petal, Max depth = 4", plotSepal=False)
+    plotClf(model, irisSplit, "Split Decision Tree Sepal, Max depth = 4", plotSepal=True)
+
+    print("Split Performing K Nearest Neighbors       ", end="    ")
+    model = knn.kNearestNeighbors(irisSplit, 3)
+    makeTestPrediction(model, irisSplit)
+    plotClf(model, irisSplit, "Split Knn Petal", plotSepal=False)
+    plotClf(model, irisSplit, "Split Knn Sepal", plotSepal=True)
+
+    print("Split Performing K Means Clustering        ", end="    ")
+    model = kmeansclustering.kMeansClustering(irisSplit, numberOfClusters=3)
+    makeTestPrediction(model, irisSplit) # This is off because the index of the clusters don't match
+    kmeansclustering.plotKMeansClustering(model, irisSplit, "Split K Means Clustering Petal", plotSepal=False)
+    kmeansclustering.plotKMeansClustering(model, irisSplit, "Split K Means Clustering Sepal", plotSepal=True)
+    
+    print("Split Performing Back propagation          ", end="    ")
+    model = bp.backPropagation(X_train, X_test, y_train, y_test)
+    makeTestPrediction(model, irisSplit)
+    plotClf(model, irisSplit, "Split Back propagation Sepal", plotSepal=True)
+    plotClf(model, irisSplit, "Split Back propagation Petal", plotSepal=False)
 
 # TODO: k Means Clustering
