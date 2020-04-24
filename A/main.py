@@ -1,6 +1,7 @@
 # pylint: disable=maybe-no-member
 from sklearn import datasets
 import knn as knn
+import kmeansclustering as kmeansclustering
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import decisiontree as dtree
@@ -25,7 +26,7 @@ def plotData(x, y, title):
     plt.clf()
     # plt.show()
 
-def plotClf(model, iris, title, plotSepal):
+def plotClf(model, iris, title, plotSepal=True, supervised=True):
     plt.clf()
     h = .02  # step size in the mesh
 
@@ -38,7 +39,10 @@ def plotClf(model, iris, title, plotSepal):
         X = iris.data[:, 2:]
         y = iris.target
 
-    model.fit(X, y)
+    if supervised:
+        model.fit(X, y)
+    else: 
+        model.fit(X)
 
     # Create color maps
     cmap_light = ListedColormap(['orange', 'cyan', 'cornflowerblue'])
@@ -79,20 +83,27 @@ if __name__ == "__main__":
     model = dtree.decisionTree(iris)
     makeTestPrediction(model, iris)
     dtree.plotDecisionTree(iris, model)
-    plotClf(model, iris, "Decision Tree Petal", False)
-    plotClf(model, iris, "Decision Tree Sepal", True)
+    plotClf(model, iris, "Decision Tree Petal", plotSepal=False)
+    plotClf(model, iris, "Decision Tree Sepal", plotSepal=True)
 
     print("Performing Decision Tree Max Depth   ", end="    ")
     model = dtree.decisionTree(iris, max_depth=4)
     makeTestPrediction(model, iris)
-    plotClf(model, iris, "Decision Tree Petal, Max depth = 4", False)
-    plotClf(model, iris, "Decision Tree Sepal, Max depth = 4", True)
+    plotClf(model, iris, "Decision Tree Petal, Max depth = 4", plotSepal=False)
+    plotClf(model, iris, "Decision Tree Sepal, Max depth = 4", plotSepal=True)
 
     print("Performing K Nearest Neighbors       ", end="    ")
     model = knn.kNearestNeighbors(iris, 3)
     makeTestPrediction(model, iris)
-    plotClf(model, iris, "Knn Petal", False)
-    plotClf(model, iris, "Knn Sepal", True)
+    plotClf(model, iris, "Knn Petal", plotSepal=False)
+    plotClf(model, iris, "Knn Sepal", plotSepal=True)
+
+    print("Performing K Means Clustering        ", end="    ")
+    model = kmeansclustering.kMeansClustering(iris, numberOfClusters=3)
+    makeTestPrediction(model, iris)
+    plotClf(model, iris, "K Means Clustering Petal", plotSepal=False, supervised=False)
+    plotClf(model, iris, "K Means Clustering Sepal", plotSepal=True, supervised=False)
+    
 
     # print("Performing Back propagation", end="    ")
     # model = bp.backPropagation(iris)
