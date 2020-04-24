@@ -26,6 +26,14 @@ For each algorithm, the Iris data set was split into test data and training data
 
 Which classification learning algorithm performed best?
 
+Petal                                                                       |  Sepal
+:--------------------------------------------------------------------------:|:--------------------------------------------------------------------------:
+![DTree Petal](A/images/Decision-Tree-Petal.png)                            |  ![DTree Sepal](A/images/Decision-Tree-Sepal.png)
+![DTree Petal, max depth 4](A/images/Decision-Tree-Petal-Max-depth-4.png)   | ![DTree Sepal, max depth 4](A/images/Decision-Tree-Sepal-Max-depth-4.png)
+![K nearest neighbors petal](A/images/Knn-Petal.png)                        | ![K nearest neighbors sepal](A/images/Knn-Sepal.png)
+![K means clustering petal](A/images/K-Means-Clustering-Petal.png)          | ![K means clustering sepal](A/images/K-Means-Clustering-Sepal.png)
+![Back propagation petal](A/images/Back-propagation-Petal.png)              | ![Back propagation sepal](A/images/Back-propagation-Sepal.png)
+
 ### Lessons Learned
 
 ### Digit Data Comparison
