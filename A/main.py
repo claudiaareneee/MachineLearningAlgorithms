@@ -84,21 +84,21 @@ if __name__ == "__main__":
     plotClf(model, iris, "Decision Tree Petal", plotSepal=False)
     plotClf(model, iris, "Decision Tree Sepal", plotSepal=True)
 
-    # print("Performing Decision Tree Max Depth   ", end="    ")
-    # model = dtree.decisionTree(iris, max_depth=4)
-    # makeTestPrediction(model, iris)
-    # plotClf(model, iris, "Decision Tree Petal, Max depth = 4", plotSepal=False)
-    # plotClf(model, iris, "Decision Tree Sepal, Max depth = 4", plotSepal=True)
+    print("Performing Decision Tree Max Depth   ", end="    ")
+    model = dtree.decisionTree(iris, max_depth=4)
+    makeTestPrediction(model, iris)
+    plotClf(model, iris, "Decision Tree Petal, Max depth = 4", plotSepal=False)
+    plotClf(model, iris, "Decision Tree Sepal, Max depth = 4", plotSepal=True)
 
-    # print("Performing K Nearest Neighbors       ", end="    ")
-    # model = knn.kNearestNeighbors(iris, 3)
-    # makeTestPrediction(model, iris)
-    # plotClf(model, iris, "Knn Petal", plotSepal=False)
-    # plotClf(model, iris, "Knn Sepal", plotSepal=True)
+    print("Performing K Nearest Neighbors       ", end="    ")
+    model = knn.kNearestNeighbors(iris, 3)
+    makeTestPrediction(model, iris)
+    plotClf(model, iris, "Knn Petal", plotSepal=False)
+    plotClf(model, iris, "Knn Sepal", plotSepal=True)
 
     print("Performing K Means Clustering        ", end="    ")
     model = kmeansclustering.kMeansClustering(iris, numberOfClusters=3)
-    makeTestPrediction(model, iris)
+    makeTestPrediction(model, iris) # This is off because the index of the clusters don't match
     kmeansclustering.plotKMeansClustering(model, iris, "K Means Clustering Petal", plotSepal=False)
     kmeansclustering.plotKMeansClustering(model, iris, "K Means Clustering Sepal", plotSepal=True)
     
