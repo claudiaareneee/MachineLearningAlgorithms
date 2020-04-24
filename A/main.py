@@ -30,7 +30,7 @@ def plotData(x, y, title):
     plt.xlabel(iris.feature_names[x])
     plt.ylabel(iris.feature_names[y])
     plt.title(title)
-    plt.savefig("A/images/" + title)
+    plt.savefig("A/images/" + title.replace(" ", "-"))
     plt.clf()
     # plt.show()
 
@@ -72,7 +72,7 @@ def plotClf(model, iris, title, plotSepal=True):
     plt.title(title)
     plt.xlabel(iris.feature_names[baseIndex])
     plt.ylabel(iris.feature_names[baseIndex + 1])
-    plt.savefig("A/images/" + title)
+    plt.savefig("A/images/" + title.replace(" ", "-"))
     # plt.show()
 
 if __name__ == "__main__":
@@ -104,8 +104,8 @@ if __name__ == "__main__":
     print("Performing Decision Tree Max Depth 4 ", end="    ")
     model = dtree.decisionTree(iris, max_depth=4)
     makeTestPrediction(model, iris)
-    plotClf(model, iris, "Decision Tree Petal, Max depth = 4", plotSepal=False)
-    plotClf(model, iris, "Decision Tree Sepal, Max depth = 4", plotSepal=True)
+    plotClf(model, iris, "Decision Tree Petal Max depth 4", plotSepal=False)
+    plotClf(model, iris, "Decision Tree Sepal Max depth 4", plotSepal=True)
 
     print("Performing K Nearest Neighbors       ", end="    ")
     model = knn.kNearestNeighbors(iris, 3)
@@ -135,8 +135,8 @@ if __name__ == "__main__":
     print("Split Performing Decision Tree Max Depth 4 ", end="    ")
     model = dtree.decisionTree(irisSplit, max_depth=4)
     makeTestPrediction(model, irisSplit)
-    plotClf(model, irisSplit, "Split Decision Tree Petal, Max depth = 4", plotSepal=False)
-    plotClf(model, irisSplit, "Split Decision Tree Sepal, Max depth = 4", plotSepal=True)
+    plotClf(model, irisSplit, "Split Decision Tree Petal Max depth 4", plotSepal=False)
+    plotClf(model, irisSplit, "Split Decision Tree Sepal Max depth 4", plotSepal=True)
 
     print("Split Performing K Nearest Neighbors       ", end="    ")
     model = knn.kNearestNeighbors(irisSplit, 3)

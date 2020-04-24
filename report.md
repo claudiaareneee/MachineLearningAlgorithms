@@ -14,6 +14,9 @@ This project was developed using [Python 3.7.7](https://www.python.org/downloads
 
 The Iris dataset is comprised of 150 samples, and each sample records the width and height of both the petal and sepal. To visualize these samples, two graphs were created: one comparing petal width and height, the other comparing sepal width and height. The following shows these relationships and the categorization of each data point.</br>
 
+![Graph](A/images/Iris-classification-according-to-Petal-measurements.png)
+![Graph](A/images/Iris-classification-according-to-Sepal-measurements.png)
+
 ### Results
 
 Which classification learning algorithm performed best?

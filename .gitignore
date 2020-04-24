@@ -137,9 +137,3 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# Project Specific filesgit
-iris
-iris.pdf
-
-# Images
-A/Images/*

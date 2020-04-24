@@ -47,5 +47,5 @@ def plotKMeansClustering(model, iris, title, plotSepal=True):
     plt.title(title)
     plt.xlabel(iris.feature_names[baseIndex])
     plt.ylabel(iris.feature_names[baseIndex + 1])
-    plt.savefig("A/images/" + title)
+    plt.savefig("A/images/" + title.replace(" ", "-"))
     # plt.show()
