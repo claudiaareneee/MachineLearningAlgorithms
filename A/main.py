@@ -17,6 +17,7 @@ def plotData(x, y, title):
     plt.ylabel(iris.feature_names[y])
     plt.title(title)
     plt.savefig("A/images/" + title)
+    plt.clf()
     # plt.show()
 
 if __name__ == "__main__":
