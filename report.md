@@ -6,7 +6,11 @@ _Two to three pages_
 
 ### What you did
 
+Part A of this project was designed to teach about different classification algorithms. For this part, several different classification algorithms were used on the famous Iris data set to predict the species of an Iris given the sepal width, sepal height, petal width, and petal height. This application uses the decision tree, k-nearest neighbors, neural networks through backpropagation, and k-means clustering algorithms. 
+
 ### Results
+
+Which classification learning algorithm performed best?
 
 ### Lessons Learned
 
