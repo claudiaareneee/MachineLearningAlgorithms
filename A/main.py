@@ -11,8 +11,9 @@ import numpy as np
 iris = datasets.load_iris()
 
 def makeTestPrediction(model, iris):
-    result = model.predict([[3, 5, 4, 2],])# What is the iris class for 3cm x 5cm sepal and 4cm x 2cm petal?
-    print ("3cm x 5cm sepal and 4cm x 2cm petal: " + str(iris.target_names[result]))
+    value = [5, 3.4, 1.6, 0.4]
+    result = model.predict([ value,])# What is the iris class for 3cm x 5cm sepal and 4cm x 2cm petal?
+    print ("%dcm x %dcm sepal and %dcm x %dcm petal: " %tuple(value) + str(iris.target_names[result]))
 
 def plotData(x, y, title):
     formatter = plt.FuncFormatter(lambda i, *args: iris.target_names[int(i)])
@@ -86,23 +87,23 @@ if __name__ == "__main__":
     plotClf(model, iris, "Decision Tree Petal", plotSepal=False)
     plotClf(model, iris, "Decision Tree Sepal", plotSepal=True)
 
-    print("Performing Decision Tree Max Depth   ", end="    ")
-    model = dtree.decisionTree(iris, max_depth=4)
-    makeTestPrediction(model, iris)
-    plotClf(model, iris, "Decision Tree Petal, Max depth = 4", plotSepal=False)
-    plotClf(model, iris, "Decision Tree Sepal, Max depth = 4", plotSepal=True)
+    # print("Performing Decision Tree Max Depth   ", end="    ")
+    # model = dtree.decisionTree(iris, max_depth=4)
+    # makeTestPrediction(model, iris)
+    # plotClf(model, iris, "Decision Tree Petal, Max depth = 4", plotSepal=False)
+    # plotClf(model, iris, "Decision Tree Sepal, Max depth = 4", plotSepal=True)
 
-    print("Performing K Nearest Neighbors       ", end="    ")
-    model = knn.kNearestNeighbors(iris, 3)
-    makeTestPrediction(model, iris)
-    plotClf(model, iris, "Knn Petal", plotSepal=False)
-    plotClf(model, iris, "Knn Sepal", plotSepal=True)
+    # print("Performing K Nearest Neighbors       ", end="    ")
+    # model = knn.kNearestNeighbors(iris, 3)
+    # makeTestPrediction(model, iris)
+    # plotClf(model, iris, "Knn Petal", plotSepal=False)
+    # plotClf(model, iris, "Knn Sepal", plotSepal=True)
 
     print("Performing K Means Clustering        ", end="    ")
     model = kmeansclustering.kMeansClustering(iris, numberOfClusters=3)
     makeTestPrediction(model, iris)
-    plotClf(model, iris, "K Means Clustering Petal", plotSepal=False, supervised=False)
-    plotClf(model, iris, "K Means Clustering Sepal", plotSepal=True, supervised=False)
+    kmeansclustering.plotKMeansClustering(model, iris, "K Means Clustering Petal", plotSepal=False)
+    kmeansclustering.plotKMeansClustering(model, iris, "K Means Clustering Sepal", plotSepal=True)
     
 
     # print("Performing Back propagation", end="    ")
