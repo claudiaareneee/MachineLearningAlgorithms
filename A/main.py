@@ -77,6 +77,11 @@ if __name__ == "__main__":
     plotClf(model, iris, "Decision Tree Petal", False)
     plotClf(model, iris, "Decision Tree Sepal", True)
 
+    print("Performing Decision Tree Max Depth")
+    model = dtree.decisionTree(iris, max_depth=4)
+    plotClf(model, iris, "Decision Tree Petal, Max depth = 4", False)
+    plotClf(model, iris, "Decision Tree Sepal, Max depth = 4", True)
+
     print("Performing K Nearest Neighbors")
     model = knn.kNearestNeighbors(iris, 3)
     plotClf(model, iris, "Knn Petal", False)
