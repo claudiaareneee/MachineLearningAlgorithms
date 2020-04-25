@@ -14,9 +14,9 @@ This project was developed using [Python 3.7.7](https://www.python.org/downloads
 
 The Iris dataset is comprised of 150 samples, and each sample records the width and length of both the petal and sepal. To visualize these samples, two graphs were created: one comparing petal width and length, the other comparing sepal width and length. The following images show these relationships and the categorization of each data point.</br>
 
-Petal                                                                       |  Sepal
-:--------------------------------------------------------------------------:|:--------------------------------------------------------------------------:
-![Graph](A/images/Iris-classification-according-to-Petal-measurements.png)  |  ![Graph](A/images/Iris-classification-according-to-Sepal-measurements.png)
+|Petal                                                                          |Sepal                                                                      |
+|:-----------------------------------------------------------------------------:|:-------------------------------------------------------------------------:|
+|![Graph](A/images/Iris-classification-according-to-Petal-measurements.png)     |  ![Graph](A/images/Iris-classification-according-to-Sepal-measurements.png)|
 
 On these graphs, it is important to note that datapoints of different categories can overlap. For instance, there are two datapoints at sepal length 5.9 and sepal width 3, but one is categorized as versicolor and the other virginica. Taken without the petal length and width, it is impossible to distinguish these two points into seperate categories. </br>
 
@@ -28,35 +28,39 @@ _Which classification learning algorithm performed best?_
 
 **Decision Tree Learning** The first algorithm implemented in this application was decision tree learning. Decision tree learning is a type of supervised learning where the samples are split based on the value of attributes in order to classify each sample. In general, simpler trees are better than complex ones because they tend to generalize the problem better, and choosing the correct attributes can learn to simpler trees. Fitting the tree with the training data and all four attributes (petal width and height and sepal width and height) produced the following tree. Decision nodes begin with a constraint; for example the root node begins with ```X[3] <= 0.8```. Leaf nodes show the total number of samples in each category. For instance, of the training data with a petal width of less than or equal to 0.8, all 37 samples were in category one, sentosa. </br>
 
-![DTree Petal](A/images/decisiontree.png)</br>
+![DTree Petal](A/images/DecisionTree.png)</br>
 
 In order to visualize the effectiveness of the decision tree aglorithm on this data set, the attributes were divided between petal and sepal and plotted on a graph. The shaded regions represent the category boundaries created by the AI, and the data points are actual data points in the training set. The decision tree in the first row was created without a max depth. They show that the training data properly categorizes all of the training data, but decision trees can often overfit data.</br>
 
-Max Depth |Petal                                                                       |  Sepal
----------:|:--------------------------------------------------------------------------:|:--------------------------------------------------------------------------:
-None      |![DTree Petal](A/images/Decision-Tree-Petal.png)                            |  ![DTree Sepal](A/images/Decision-Tree-Sepal.png)
-4         |![DTree Petal, max depth 4](A/images/Decision-Tree-Petal-Max-depth-4.png)   | ![DTree Sepal, max depth 4](A/images/Decision-Tree-Sepal-Max-depth-4.png)
+|Max Depth  |Training Samples                                                            |Test Samples                                                               |
+|-----------|:--------------------------------------------------------------------------:|:-------------------------------------------------------------------------:|
+|None       |![DecisionTreePetalTrainData](A/images/DecisionTreePetalTrainData.png)      | ![DecisionTreePetalTestData](A/images/DecisionTreePetalTestData.png)|
+|None       |![DecisionTreeSepalTrainData](A/images/DecisionTreeSepalTrainData.png)      | ![DecisionTreeSepalTestData](A/images/DecisionTreeSepalTestData.png)|
+|4          |![DecisionTreeMaxDepth4PetalTrainData](A/images/DecisionTreeMaxDepth4PetalTrainData.png)| ![DecisionTreeMaxDepth4PetalTestData](A/images/DecisionTreeMaxDepth4PetalTestData.png)|
+|4          |![DecisionTreeMaxDepth4SepalTrainData](A/images/DecisionTreeMaxDepth4SepalTrainData.png)| ![DecisionTreeMaxDepth4SepalTestData](A/images/DecisionTreeMaxDepth4SepalTestData.png)|
 
 **Orange represents sentosa, cyan represents versicolor, and blue represents virginica*
 
 **K-nearest Neighbors**   </br>
 
-Petal                                                                       |  Sepal
-:--------------------------------------------------------------------------:|:--------------------------------------------------------------------------:
-![K nearest neighbors petal](A/images/Knn-Petal.png)                        | ![K nearest neighbors sepal](A/images/Knn-Sepal.png)
+|Training Samples                                                                 |Test Samples                                                                   |
+|:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
+|![KNearestNeighborsPetalTrainData](A/images/KNearestNeighborsPetalTrainData.png) |![KNearestNeighborsPetalTestData](A/images/KNearestNeighborsPetalTestData.png) |
+|![KNearestNeighborsSepalTrainData](A/images/KNearestNeighborsSepalTrainData.png) |![KNearestNeighborsSepalTestData](A/images/KNearestNeighborsSepalTestData.png) |
 
 **K-means Clustering**   </br>
 
-Petal                                                                       |  Sepal
-:--------------------------------------------------------------------------:|:--------------------------------------------------------------------------:
-![K means clustering petal](A/images/K-Means-Clustering-Petal.png)          | ![K means clustering sepal](A/images/K-Means-Clustering-Sepal.png)
+|Training Samples                                                                 |Test Samples                                                                   |
+|:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
+|![KMeansClusteringPetalTrainData](A/images/KMeansClusteringPetalTrainData.png)   |![KMeansClusteringPetalTestData](A/images/KMeansClusteringPetalTestData.png)   |
+|![KMeansClusteringSepalTrainData](A/images/KMeansClusteringSepalTrainData.png)   |![KMeansClusteringSepalTestData](A/images/KMeansClusteringSepalTestData.png)   |
 
 **Back-propagation**   </br>
 
-Petal                                                                       |  Sepal
-:--------------------------------------------------------------------------:|:--------------------------------------------------------------------------:
-![Back propagation petal](A/images/Back-propagation-Petal.png)              | ![Back propagation sepal](A/images/Back-propagation-Sepal.png)
-
+|Training Samples                                                                 |Test Samples                                                                   |
+|:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
+|![BackpropagationPetalTrainData](A/images/BackpropagationPetalTrainData.png)     |![BackpropagationPetalTestData](A/images/BackpropagationPetalTestData.png)     |
+|![BackpropagationSepalTrainData](A/images/BackpropagationSepalTrainData.png)     |![BackpropagationSepalTestData](A/images/BackpropagationSepalTestData.png)     |
 
 |Algorithm                      |Training Accuracy              |Test Accuracy                  |Confusion Matrix                           |Classification report          |
 |-------------------------------|-------------------------------|-------------------------------|-------------------------------------------|-------------------------------|
