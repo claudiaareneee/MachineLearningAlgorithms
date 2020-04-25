@@ -2,11 +2,8 @@
 # pylint: disable=maybe-no-member
 from sklearn.neighbors import KNeighborsClassifier
 
-def kNearestNeighbors(iris, k):
+def kNearestNeighbors(X_train, y_train, k):
     model = KNeighborsClassifier(n_neighbors=k)
-    # model = model.fit(iris.data, iris.target)
-    X = iris.data
-    y = iris.target
 
-    model = model.fit(X, y)
+    model = model.fit(X_train, y_train)
     return model

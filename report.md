@@ -30,7 +30,7 @@ _Which classification learning algorithm performed best?_
 
 ![DTree Petal](A/images/decisiontree.png)</br>
 
-In order to visualize the effectiveness of the decision tree aglorithm on this data set, the attributes were divided between petal and sepal and plotted. The shaded regions represent the category boundaries created by the AI, and the data points are actual data points in the training set. These graphs show that the training data properly categorizes all of the training data, but decision trees can often overfit data. 
+In order to visualize the effectiveness of the decision tree aglorithm on this data set, the attributes were divided between petal and sepal and plotted on a graph. The shaded regions represent the category boundaries created by the AI, and the data points are actual data points in the training set. The decision tree in the first row was created without a max depth. They show that the training data properly categorizes all of the training data, but decision trees can often overfit data.</br>
 
 Max Depth |Petal                                                                       |  Sepal
 ---------:|:--------------------------------------------------------------------------:|:--------------------------------------------------------------------------:

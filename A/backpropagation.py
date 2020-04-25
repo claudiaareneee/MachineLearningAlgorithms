@@ -12,15 +12,3 @@ def backPropagation(X_train, X_test, y_train, y_test):
     mlp = MLPClassifier(hidden_layer_sizes=(10, 10, 10), max_iter=1000)
     mlp.fit(X_train, y_train.ravel()) # This was y_train.values.ravel()
     return mlp
-
-def plotBackPropagation(iris, model):
-    # y_test, predictions = model
-    # print("Confusion Matrix: ")
-    # print(confusion_matrix(y_test,predictions))
-
-    # print("")
-
-    # print("Classification Report: ")
-    # print(classification_report(y_test,predictions))
-
-    pass
