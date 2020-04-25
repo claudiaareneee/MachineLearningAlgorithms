@@ -34,10 +34,10 @@ In order to visualize the effectiveness of the decision tree aglorithm on this d
 
 |Max Depth  |Training Samples                                                            |Test Samples                                                               |
 |-----------|:--------------------------------------------------------------------------:|:-------------------------------------------------------------------------:|
-|None       |![DecisionTreePetalTrainData](A/images/DecisionTreePetalTrainData.png)      | ![DecisionTreePetalTestData](A/images/DecisionTreePetalTestData.png)|
-|None       |![DecisionTreeSepalTrainData](A/images/DecisionTreeSepalTrainData.png)      | ![DecisionTreeSepalTestData](A/images/DecisionTreeSepalTestData.png)|
-|4          |![DecisionTreeMaxDepth4PetalTrainData](A/images/DecisionTreeMaxDepth4PetalTrainData.png)| ![DecisionTreeMaxDepth4PetalTestData](A/images/DecisionTreeMaxDepth4PetalTestData.png)|
-|4          |![DecisionTreeMaxDepth4SepalTrainData](A/images/DecisionTreeMaxDepth4SepalTrainData.png)| ![DecisionTreeMaxDepth4SepalTestData](A/images/DecisionTreeMaxDepth4SepalTestData.png)|
+|None       |![DecisionTreePetalTrainingData](A/images/DecisionTreePetalTrainingData.png)      | ![DecisionTreePetalTestData](A/images/DecisionTreePetalTestData.png)|
+|None       |![DecisionTreeSepalTrainingData](A/images/DecisionTreeSepalTrainingData.png)      | ![DecisionTreeSepalTestData](A/images/DecisionTreeSepalTestData.png)|
+|4          |![DecisionTreeMaxDepth4PetalTrainingData](A/images/DecisionTreeMaxDepth4PetalTrainingData.png)| ![DecisionTreeMaxDepth4PetalTestData](A/images/DecisionTreeMaxDepth4PetalTestData.png)|
+|4          |![DecisionTreeMaxDepth4SepalTrainingData](A/images/DecisionTreeMaxDepth4SepalTrainingData.png)| ![DecisionTreeMaxDepth4SepalTestData](A/images/DecisionTreeMaxDepth4SepalTestData.png)|
 
 **Orange represents sentosa, cyan represents versicolor, and blue represents virginica*
 
@@ -45,22 +45,22 @@ In order to visualize the effectiveness of the decision tree aglorithm on this d
 
 |Training Samples                                                                 |Test Samples                                                                   |
 |:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
-|![KNearestNeighborsPetalTrainData](A/images/KNearestNeighborsPetalTrainData.png) |![KNearestNeighborsPetalTestData](A/images/KNearestNeighborsPetalTestData.png) |
-|![KNearestNeighborsSepalTrainData](A/images/KNearestNeighborsSepalTrainData.png) |![KNearestNeighborsSepalTestData](A/images/KNearestNeighborsSepalTestData.png) |
+|![KNearestNeighborsPetalTrainingData](A/images/KNearestNeighborsPetalTrainingData.png) |![KNearestNeighborsPetalTestData](A/images/KNearestNeighborsPetalTestData.png) |
+|![KNearestNeighborsSepalTrainingData](A/images/KNearestNeighborsSepalTrainingData.png) |![KNearestNeighborsSepalTestData](A/images/KNearestNeighborsSepalTestData.png) |
 
 **K-means Clustering**   </br>
 
 |Training Samples                                                                 |Test Samples                                                                   |
 |:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
-|![KMeansClusteringPetalTrainData](A/images/KMeansClusteringPetalTrainData.png)   |![KMeansClusteringPetalTestData](A/images/KMeansClusteringPetalTestData.png)   |
-|![KMeansClusteringSepalTrainData](A/images/KMeansClusteringSepalTrainData.png)   |![KMeansClusteringSepalTestData](A/images/KMeansClusteringSepalTestData.png)   |
+|![KMeansClusteringPetalTrainingData](A/images/KMeansClusteringPetalTrainingData.png)   |![KMeansClusteringPetalTestData](A/images/KMeansClusteringPetalTestData.png)   |
+|![KMeansClusteringSepalTrainingData](A/images/KMeansClusteringSepalTrainingData.png)   |![KMeansClusteringSepalTestData](A/images/KMeansClusteringSepalTestData.png)   |
 
 **Back-propagation**   </br>
 
 |Training Samples                                                                 |Test Samples                                                                   |
 |:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
-|![BackpropagationPetalTrainData](A/images/BackpropagationPetalTrainData.png)     |![BackpropagationPetalTestData](A/images/BackpropagationPetalTestData.png)     |
-|![BackpropagationSepalTrainData](A/images/BackpropagationSepalTrainData.png)     |![BackpropagationSepalTestData](A/images/BackpropagationSepalTestData.png)     |
+|![BackpropagationPetalTrainingData](A/images/BackpropagationPetalTrainingData.png)     |![BackpropagationPetalTestData](A/images/BackpropagationPetalTestData.png)     |
+|![BackpropagationSepalTrainingData](A/images/BackpropagationSepalTrainingData.png)     |![BackpropagationSepalTestData](A/images/BackpropagationSepalTestData.png)     |
 
 |Algorithm                      |Training Accuracy              |Test Accuracy                  |Confusion Matrix                           |Classification report          |
 |-------------------------------|-------------------------------|-------------------------------|-------------------------------------------|-------------------------------|

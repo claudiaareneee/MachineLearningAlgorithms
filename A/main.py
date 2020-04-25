@@ -69,11 +69,11 @@ def plotAll(model, iris, X_train, X_test, y_train, y_test, title, plotSepal=True
     X_test_Petal = X_test[:, 2:]
 
     model.fit(X_train_Sepal, y_train)
-    plotClf(model, iris, X_train_Sepal, X_train_Sepal, y_train, y_train, title + " Sepal Train Data", plotSepal=True, supervised=supervised)
+    plotClf(model, iris, X_train_Sepal, X_train_Sepal, y_train, y_train, title + " Sepal Training Data", plotSepal=True, supervised=supervised)
     plotClf(model, iris, X_train_Sepal, X_test_Sepal, y_train, y_test, title + " Sepal Test Data", plotSepal=True, supervised=supervised)
 
     model.fit(X_train_Petal, y_train)
-    plotClf(model, iris, X_train_Petal, X_train_Petal, y_train, y_train, title + " Petal Train Data", plotSepal=False, supervised=supervised)
+    plotClf(model, iris, X_train_Petal, X_train_Petal, y_train, y_train, title + " Petal Training Data", plotSepal=False, supervised=supervised)
     plotClf(model, iris, X_train_Petal, X_test_Petal, y_train, y_test, title + " Petal Test Data", plotSepal=False, supervised=supervised)    
 
 def spotCheck(name, model):
