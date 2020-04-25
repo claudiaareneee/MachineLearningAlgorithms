@@ -12,9 +12,9 @@ def decisionTree(X_train, y_train, max_depth=0):
     return model
 
 
-def plotDecisionTree(model):
+def plotDecisionTree(model, name):
     tree.plot_tree((model)) 
 
     dot_data = tree.export_graphviz(model, out_file=None) 
     graph = graphviz.Source(dot_data) 
-    graph.render("A/images/decisiontree") 
+    graph.render("A/images/" + name.replace(' ', '')) 

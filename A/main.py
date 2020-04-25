@@ -1,17 +1,16 @@
 # pylint: disable=maybe-no-member
-from sklearn import datasets
-from sklearn.model_selection import train_test_split
-import knn as knn
-import kmeansclustering as kmeansclustering
+from sklearn import datasets, model_selection
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
+import knn as knn
+import kmeansclustering as kmeansclustering
 import decisiontree as dtree
 import backpropagation as bp
 import numpy as np
-import copy
 
 iris = datasets.load_iris()
-X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size = 0.20)
+X_train, X_test, y_train, y_test = model_selection.train_test_split(iris.data, iris.target, test_size = 0.20)
 
 def makeTestPrediction(model, iris):
     value = [5, 3.4, 1.6, 0.4]
@@ -20,7 +19,6 @@ def makeTestPrediction(model, iris):
 
 def plotData(x, y, title):
     formatter = plt.FuncFormatter(lambda i, *args: iris.target_names[int(i)])
-
     plt.scatter(iris.data[:, x], iris.data[:, y], c=iris.target)
     plt.colorbar(ticks=[0, 1, 2], format=formatter)
     plt.xlabel(iris.feature_names[x])
@@ -28,7 +26,6 @@ def plotData(x, y, title):
     plt.title(title)
     plt.savefig("A/images/" + title.replace(" ", "-"))
     plt.clf()
-    # plt.show()
 
 def plotClf(model, iris, X_train, X_plot, y_train, y_plot, title, plotSepal=True, supervised=True):
     plt.clf()
@@ -63,7 +60,7 @@ def plotClf(model, iris, X_train, X_plot, y_train, y_plot, title, plotSepal=True
     plt.title(title)
     plt.xlabel(iris.feature_names[baseIndex])
     plt.ylabel(iris.feature_names[baseIndex + 1])
-    plt.savefig("A/images/" + title.replace(" ", "-"))
+    plt.savefig("A/images/" + title.replace(" ", ""))
 
 def plotAll(model, iris, X_train, X_test, y_train, y_test, title, plotSepal=True, supervised=True):
     X_train_Sepal = X_train[:, :2]
@@ -79,50 +76,67 @@ def plotAll(model, iris, X_train, X_test, y_train, y_test, title, plotSepal=True
     plotClf(model, iris, X_train_Petal, X_train_Petal, y_train, y_train, title + " Petal Train Data", plotSepal=False, supervised=supervised)
     plotClf(model, iris, X_train_Petal, X_test_Petal, y_train, y_test, title + " Petal Test Data", plotSepal=False, supervised=supervised)    
 
-if __name__ == "__main__":
-    print("Iris data:")
-    print(iris.data)
-    print("Iris target:")
-    print(iris.target)
-    print("Iris target names:")
-    print(iris.target_names)
+def spotCheck(name, model):
+    model.fit(X_train, y_train)
 
-    print("X_train:")
-    print(X_train)
-    print("X_test:")
-    print(X_test)
-    print("y_train:")
-    print(y_train)
-    print("y_test:")
-    print(y_test)
+    predictions = model.predict(X_test)
+    score = accuracy_score(y_test, predictions)
+    print("Test accuracy score: %f" % score)
+    print("Confusion matrix:")
+    score = confusion_matrix(y_test, predictions)
+    print(score)
+    print("Classification report:")
+    score  = classification_report(y_test, predictions)
+    print(score)
+
+    kfold = model_selection.KFold(n_splits=10)
+    cv_results = model_selection.cross_val_score(model, X_train, y_train, cv=kfold, scoring='accuracy')
+    msg = "Training accuracy score: %f (%f)" % (cv_results.mean(), cv_results.std())
+    print(msg)
+
+if __name__ == "__main__":
+    # print("Iris data:")
+    # print(iris.data)
+    # print("Iris target:")
+    # print(iris.target)
+    # print("Iris target names:")
+    # print(iris.target_names)
+
+    # print("X_train:")
+    # print(X_train)
+    # print("X_test:")
+    # print(X_test)
+    # print("y_train:")
+    # print(y_train)
+    # print("y_test:")
+    # print(y_test)
 
     plotData(0,1,"Iris classification according to Sepal measurements")
     plotData(2,3,"Iris classification according to Petal measurements")
 
-    print("Performing Decision Tree             ", end="    ")
-    model = dtree.decisionTree(X_train, y_train)
-    makeTestPrediction(model, iris)
-    dtree.plotDecisionTree(model)
-    plotAll(model, iris, X_train, X_test, y_train, y_test, "Decision Tree", plotSepal=False)
+    models = []
 
-    print("Performing Decision Tree Max Depth 4 ", end="    ")
-    model = dtree.decisionTree(X_train, y_train, max_depth=4)
-    makeTestPrediction(model, iris)
-    plotAll(model, iris, X_train, X_test, y_train, y_test, "Decision Tree Max Depth 4", plotSepal=False)
+    models.append(("Decision Tree", dtree.decisionTree(X_train, y_train)))
+    models.append(("Decision Tree Max Depth 4", dtree.decisionTree(X_train, y_train, max_depth=4)))
+    models.append(("K Nearest Neighbors", knn.kNearestNeighbors(X_train, y_train, 3)))
+    models.append(("K Means Clustering", kmeansclustering.kMeansClustering(X_train, numberOfClusters=3)))
+    models.append(("Back propagation", bp.backPropagation(X_train, X_test, y_train, y_test)))
 
-    print("Performing K Nearest Neighbors       ", end="    ")
-    model = knn.kNearestNeighbors(X_train, y_train, 3)
-    makeTestPrediction(model, iris)
-    plotAll(model, iris, X_train, X_test, y_train, y_test, "K Nearest Neighbors", plotSepal=False)
+    # dtree.plotDecisionTree(model)
 
-    print("Performing K Means Clustering        ", end="    ")
-    model = kmeansclustering.kMeansClustering(X_train, numberOfClusters=3)
-    makeTestPrediction(model, iris) # This is off because the index of the clusters don't match
-    plotAll(model, iris, X_train, X_test, y_train, y_test, "K Means Clustering", plotSepal=False, supervised=False)
-    
-    print("Performing Back propagation          ", end="    ")
-    model = bp.backPropagation(X_train, X_test, y_train, y_test)
-    makeTestPrediction(model, iris)
-    plotAll(model, iris, X_train, X_test, y_train, y_test, "Back Propagation", plotSepal=False)
+    for name, model in models:
+        print("---------------------------------------------------------------------------------------------")
+        print(name)
+        print("")
+
+        supervised = True
+        if (name is "Decision Tree"):
+            dtree.plotDecisionTree(model, name)
+        elif ("K Means Clustering" in name):
+            supervised = False
+
+        makeTestPrediction(model, iris)
+        spotCheck(name, model)
+        plotAll(model, iris, X_train, X_test, y_train, y_test, name, plotSepal=False, supervised=supervised)
 
 # TODO: k Means Clustering
