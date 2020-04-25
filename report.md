@@ -57,6 +57,14 @@ Petal                                                                       |  S
 :--------------------------------------------------------------------------:|:--------------------------------------------------------------------------:
 ![Back propagation petal](A/images/Back-propagation-Petal.png)              | ![Back propagation sepal](A/images/Back-propagation-Sepal.png)
 
+
+|Algorithm                      |Training Accuracy              |Test Accuracy                  |Confusion Matrix                           |Classification report          |
+|-------------------------------|-------------------------------|-------------------------------|-------------------------------------------|-------------------------------|
+|Decision Tree                  |0.958333                       |0.900000                       |```[[ 8  0  0], [ 0 10  1], [ 0  2  9]]``` |90%                            |
+|Decision Tree Max Depth 4      |0.966667                       |0.900000                       |```[[ 8  0  0], [ 0 10  1], [ 0  2  9]]``` |90%                            |
+|K Nearest Neighbors            |0.950000                       |0.933333                       |```[[ 8  0  0], [ 0 10  1], [0  1 10]```   |93%                            |
+|Back propagation               |0.991667                       |0.966667                       |```[[ 8  0  0], [ 0 10  1], [ 0  0 11]]``` |97%                            |
+
 ### Lessons Learned
 
 ### Digit Data Comparison
