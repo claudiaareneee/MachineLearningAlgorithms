@@ -30,64 +30,14 @@ def plotData(x, y, title):
     plt.clf()
     # plt.show()
 
-def plotClf(model, iris, X_train, y_train, title, plotSepal=True, supervised=True):
+def plotClf(model, iris, X_train, X_plot, y_train, y_plot, title, plotSepal=True, supervised=True):
     plt.clf()
     h = .02  # step size in the mesh
 
     if (plotSepal):
         baseIndex = 0
-        X = X_train[:, :2]
     else: 
-        baseIndex = 2
-        X = X_train[:, 2:]
-
-    if supervised:
-        model.fit(X, y_train)
-    else: 
-        model.fit(X)
-
-    # Create color maps
-    cmap_light = ListedColormap(['orange', 'cyan', 'cornflowerblue'])
-    cmap_bold = ListedColormap(['darkorange', 'c', 'darkblue'])
-
-    # Plot the decision boundary. For that, we will assign a color to each
-    # point in the mesh [x_min, x_max]x[y_min, y_max].
-    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
-    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
-    xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
-    Z = model.predict(np.c_[xx.ravel(), yy.ravel()])
-
-    # Put the result into a color plot
-    Z = Z.reshape(xx.shape)
-    # plt.figure()
-    plt.pcolormesh(xx, yy, Z, cmap=cmap_light)
-
-    # Plot also the training points
-    plt.scatter(X[:, 0], X[:, 1], c=y_train, cmap=cmap_bold, edgecolor='k', s=20)
-    if not supervised:
-        plt.scatter(model.cluster_centers_[:,0] ,model.cluster_centers_[:,1], color='red')
-    plt.xlim(xx.min(), xx.max())
-    plt.ylim(yy.min(), yy.max())
-    plt.title(title)
-    plt.xlabel(iris.feature_names[baseIndex])
-    plt.ylabel(iris.feature_names[baseIndex + 1])
-    plt.savefig("A/images/" + title.replace(" ", "-"))
-    # plt.show()
-
-def plotClfTestData(model, iris, X_train, X_test, y_train, y_test, title, plotSepal=True, supervised=True):
-    plt.clf()
-    h = .02  # step size in the mesh
-
-    if (plotSepal):
-        baseIndex = 0
-        X_train = X_train[:, :2]
-        X_test = X_test[:, :2]
-    else: 
-        baseIndex = 2
-        X_train = X_train[:, 2:]
-        X_test = X_test[:, 2:]
-
-    model.fit(X_train, y_train)    
+        baseIndex = 2  
 
     # Create color maps
     cmap_light = ListedColormap(['orange', 'cyan', 'cornflowerblue'])
@@ -102,11 +52,10 @@ def plotClfTestData(model, iris, X_train, X_test, y_train, y_test, title, plotSe
 
     # Put the result into a color plot
     Z = Z.reshape(xx.shape)
-    # plt.figure()
     plt.pcolormesh(xx, yy, Z, cmap=cmap_light)
 
     # Plot also the training points
-    plt.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cmap_bold, edgecolor='k', s=20)
+    plt.scatter(X_plot[:, 0], X_plot[:, 1], c=y_plot, cmap=cmap_bold, edgecolor='k', s=20)
     if not supervised:
         plt.scatter(model.cluster_centers_[:,0] ,model.cluster_centers_[:,1], color='red')
     plt.xlim(xx.min(), xx.max())
@@ -115,7 +64,20 @@ def plotClfTestData(model, iris, X_train, X_test, y_train, y_test, title, plotSe
     plt.xlabel(iris.feature_names[baseIndex])
     plt.ylabel(iris.feature_names[baseIndex + 1])
     plt.savefig("A/images/" + title.replace(" ", "-"))
-    # plt.show()
+
+def plotAll(model, iris, X_train, X_test, y_train, y_test, title, plotSepal=True, supervised=True):
+    X_train_Sepal = X_train[:, :2]
+    X_test_Sepal = X_test[:, :2]
+    X_train_Petal = X_train[:, 2:]
+    X_test_Petal = X_test[:, 2:]
+
+    model.fit(X_train_Sepal, y_train)
+    plotClf(model, iris, X_train_Sepal, X_train_Sepal, y_train, y_train, title + " Sepal Train Data", plotSepal=True, supervised=supervised)
+    plotClf(model, iris, X_train_Sepal, X_test_Sepal, y_train, y_test, title + " Sepal Test Data", plotSepal=True, supervised=supervised)
+
+    model.fit(X_train_Petal, y_train)
+    plotClf(model, iris, X_train_Petal, X_train_Petal, y_train, y_train, title + " Petal Train Data", plotSepal=False, supervised=supervised)
+    plotClf(model, iris, X_train_Petal, X_test_Petal, y_train, y_test, title + " Petal Test Data", plotSepal=False, supervised=supervised)    
 
 if __name__ == "__main__":
     print("Iris data:")
@@ -141,41 +103,26 @@ if __name__ == "__main__":
     model = dtree.decisionTree(X_train, y_train)
     makeTestPrediction(model, iris)
     dtree.plotDecisionTree(model)
-    plotClf(model, iris, X_train, y_train, "Decision Tree Petal", plotSepal=False)
-    plotClf(model, iris, X_train, y_train, "Decision Tree Sepal", plotSepal=True)
-    plotClfTestData(model, iris, X_train, X_test, y_train, y_test, "Decision Tree Petal Test Data", plotSepal=False)
-    plotClfTestData(model, iris, X_train, X_test, y_train, y_test, "Decision Tree Sepal Test Data", plotSepal=True)
+    plotAll(model, iris, X_train, X_test, y_train, y_test, "Decision Tree", plotSepal=False)
 
     print("Performing Decision Tree Max Depth 4 ", end="    ")
     model = dtree.decisionTree(X_train, y_train, max_depth=4)
     makeTestPrediction(model, iris)
-    plotClf(model, iris, X_train, y_train, "Decision Tree Petal Max depth 4", plotSepal=False)
-    plotClf(model, iris, X_train, y_train, "Decision Tree Sepal Max depth 4", plotSepal=True)
-    plotClfTestData(model, iris, X_train, X_test, y_train, y_test, "Decision Tree Petal Max depth 4 Test Data", plotSepal=False)
-    plotClfTestData(model, iris, X_train, X_test, y_train, y_test, "Decision Tree Sepal Max depth 4 Test Data", plotSepal=True)
+    plotAll(model, iris, X_train, X_test, y_train, y_test, "Decision Tree Max Depth 4", plotSepal=False)
 
     print("Performing K Nearest Neighbors       ", end="    ")
     model = knn.kNearestNeighbors(X_train, y_train, 3)
     makeTestPrediction(model, iris)
-    plotClf(model, iris, X_train, y_train, "Knn Petal", plotSepal=False)
-    plotClf(model, iris, X_train, y_train, "Knn Sepal", plotSepal=True)
-    plotClfTestData(model, iris, X_train, X_test, y_train, y_test, "Knn Petal Test Data", plotSepal=False)
-    plotClfTestData(model, iris, X_train, X_test, y_train, y_test, "Knn Sepal Test Data", plotSepal=True)
+    plotAll(model, iris, X_train, X_test, y_train, y_test, "K Nearest Neighbors", plotSepal=False)
 
     print("Performing K Means Clustering        ", end="    ")
     model = kmeansclustering.kMeansClustering(X_train, numberOfClusters=3)
     makeTestPrediction(model, iris) # This is off because the index of the clusters don't match
-    plotClf(model, iris, X_train, y_train, "K Means Clustering Petal", plotSepal=False, supervised=False)
-    plotClf(model, iris, X_train, y_train, "K Means Clustering Sepal", plotSepal=True, supervised=False)
-    plotClfTestData(model, iris, X_train, X_test, y_train, y_test, "K Means Clustering Petal Test Data", plotSepal=False, supervised=False)
-    plotClfTestData(model, iris, X_train, X_test, y_train, y_test, "K Means Clustering Sepal Test Data", plotSepal=True, supervised=False)
+    plotAll(model, iris, X_train, X_test, y_train, y_test, "K Means Clustering", plotSepal=False, supervised=False)
     
     print("Performing Back propagation          ", end="    ")
     model = bp.backPropagation(X_train, X_test, y_train, y_test)
     makeTestPrediction(model, iris)
-    plotClf(model, iris, X_train, y_train, "Back propagation Sepal", plotSepal=True)
-    plotClf(model, iris, X_train, y_train, "Back propagation Petal", plotSepal=False)
-    plotClfTestData(model, iris, X_train, X_test, y_train, y_test, "Back propagation Petal Test Data", plotSepal=False)
-    plotClfTestData(model, iris, X_train, X_test, y_train, y_test, "Back propagation Sepal Test Data", plotSepal=True)
+    plotAll(model, iris, X_train, X_test, y_train, y_test, "Back Propagation", plotSepal=False)
 
 # TODO: k Means Clustering
