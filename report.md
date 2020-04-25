@@ -24,14 +24,33 @@ For each algorithm, the Iris data set was split into test data and training data
 
 ### Results
 
-Which classification learning algorithm performed best?
+_Which classification learning algorithm performed best?_
+
+**Decision Tree Learning** The first algorithm implemented in this application was decision tree learning. Decision tree learning is a type of supervised learning where the samples are split based on the value of attributes in order to classify each sample. In general, simpler trees are better than complex ones because they tend to generalize the problem better, and choosing the correct attributes can learn to simpler trees. Fitting the tree with the training data and all four attributes (petal width and height and sepal width and height) produced the following tree. Decision nodes begin with a constraint; for example the root node begins with ```X[3] <= 0.8```. Leaf nodes show the total number of samples in each category. For instance, of the training data with a petal width of less than or equal to 0.8, all 37 samples were in category one, sentosa. </br>
+
+![DTree Petal](A/images/decisiontree.png)
 
 Petal                                                                       |  Sepal
 :--------------------------------------------------------------------------:|:--------------------------------------------------------------------------:
 ![DTree Petal](A/images/Decision-Tree-Petal.png)                            |  ![DTree Sepal](A/images/Decision-Tree-Sepal.png)
 ![DTree Petal, max depth 4](A/images/Decision-Tree-Petal-Max-depth-4.png)   | ![DTree Sepal, max depth 4](A/images/Decision-Tree-Sepal-Max-depth-4.png)
+
+**K-nearest Neighbors**   </br>
+
+Petal                                                                       |  Sepal
+:--------------------------------------------------------------------------:|:--------------------------------------------------------------------------:
 ![K nearest neighbors petal](A/images/Knn-Petal.png)                        | ![K nearest neighbors sepal](A/images/Knn-Sepal.png)
+
+**K-means Clustering**   </br>
+
+Petal                                                                       |  Sepal
+:--------------------------------------------------------------------------:|:--------------------------------------------------------------------------:
 ![K means clustering petal](A/images/K-Means-Clustering-Petal.png)          | ![K means clustering sepal](A/images/K-Means-Clustering-Sepal.png)
+
+**Back-propagation**   </br>
+
+Petal                                                                       |  Sepal
+:--------------------------------------------------------------------------:|:--------------------------------------------------------------------------:
 ![Back propagation petal](A/images/Back-propagation-Petal.png)              | ![Back propagation sepal](A/images/Back-propagation-Sepal.png)
 
 ### Lessons Learned
