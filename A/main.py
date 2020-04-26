@@ -116,7 +116,7 @@ if __name__ == "__main__":
     # file.write("y_test:")
     # file.write(y_test)
 
-    file = open('metrix.txt', 'w')
+    file = open('metrics.txt', 'w')
 
     plotData(0,1,"Iris classification according to Sepal measurements")
     plotData(2,3,"Iris classification according to Petal measurements")
