@@ -1,6 +1,6 @@
 # Machine Learning Algorithms
 
-The goal of this project is to comapre different machine learning algorithms for different problems. Part A of this application focuses on using the Iris dataset to compare classification algorithms. Part B of this project focuses on different implementations of gradient decent.
+The goal of this project is to compare different machine learning algorithms for different problems. Part A of this application focuses on using the Iris dataset to compare classification algorithms. Part B of this project focuses on different implementations of gradient decent.
 
 ## Part A - Classification Algorithms
 
@@ -18,34 +18,36 @@ The Iris dataset is comprised of 150 samples, and each sample records the width 
 |:-----------------------------------------------------------------------------:|:-------------------------------------------------------------------------:|
 |![Graph](A/images/Iris-classification-according-to-Petal-measurements.png)     |  ![Graph](A/images/Iris-classification-according-to-Sepal-measurements.png)|
 
-On these graphs, it is important to note that datapoints of different categories can overlap. For instance, there are two datapoints at sepal length 5.9 and sepal width 3, but one is categorized as versicolor and the other virginica. Taken without the petal length and width, it is impossible to distinguish these two points into seperate categories. </br>
+On these graphs, it is important to note that datapoints of different categories can overlap. For instance, there are two datapoints at sepal length 5.9 and sepal width 3, but one is categorized as Versicolor and the other Virginica. Taken without the petal length and width, it is impossible to distinguish these two points into separate categories. </br>
 
 For each algorithm, the Iris data set was split into test data and training data using the ```train_test_split``` method from SciKit-Learn. Twenty percent of samples were saved for testing data. The other samples were used for training data. Next the models were fit to the training data, and test samples were passed in to check for accuracy. To better visualize the results of these algorithms, the models were then fit to petal data and sepal data independently and graphed.
 
 ### Results
 
 _Which classification learning algorithm performed best?_
-*For the graphs in this section, orange represents sentosa, cyan represents versicolor, and blue represents virginica.*
+*For the graphs in this section, orange represents Sentosa, cyan represents Versicolor, and blue represents Virginica.*
 
-**Decision Tree Learning** The first algorithm implemented in this application was decision tree learning. Decision tree learning is a type of supervised learning where the samples are split based on the value of attributes in order to classify each sample. In general, simpler trees are better than complex ones because they tend to generalize the problem better, and choosing the correct attributes can lead to simpler trees. Fitting the tree with the training data and all four attributes (petal width and height and sepal width and height) produced the following tree. Decision nodes begin with a constraint. For example, the root node begins with ```X[2] <= 2.45```. Leaf nodes show the total number of samples in each category. For instance, of the training data with a petal length of less than or equal to 2.45, all 42 samples were in the first category, sentosa. This tree shows how attributes can be used to categorize data.</br>
+**Decision Tree Learning** The first algorithm implemented in this application was decision tree learning. Decision tree learning is a type of supervised learning where the samples are split based on the value of attributes in order to classify each sample. In general, simpler trees are better than complex ones because they tend to generalize the problem better, and choosing the correct attributes can lead to simpler trees. Fitting the tree with the training data and all four attributes (petal width and height and sepal width and height) produced the following tree. Decision nodes begin with a constraint. For example, the root node begins with ```X[2] <= 2.45```. Leaf nodes show the total number of samples in each category. For instance, of the training data with a petal length of less than or equal to 2.45, all 42 samples were in the first category, Sentosa. This tree shows how attributes can be used to categorize data.</br>
 
 ![DTree Petal](A/images/DecisionTree.png)</br>
 
-In order to visualize the effectiveness of the decision tree aglorithm on this data set, the attributes were divided between petal and sepal and plotted on a graph. The shaded regions represent the category boundaries created by the AI, and the data points are actual data points in the training set. A max depth for this tree was not specified. They show that the training data properly categorizes almost all of the training data, but decision trees can often overfit data. In the sepal graphs, there is a virginica classification pocket between a width of 5.5 to 6.2 and a height of 2.4 to 2.6. The training data is properly catorgized, but the test data is categorized incorrectly.</br>
+In order to visualize the effectiveness of the decision tree algorithm on this data set, the attributes were divided between petal and sepal and plotted on a graph. The shaded regions represent the category boundaries created by the AI, and the data points are actual data points in the training set. A max depth for this tree was not specified. These graphs show that most of the training data is categorized correctly, but some of the data was overfit. In the sepal graphs, there is a Virginica classification pocket between a width of 5.5 to 6.2 and a height of 2.4 to 2.6. The training data is properly categorized, but the test data is categorized incorrectly.</br>
 
 |Max Depth  |Training Samples                                                            |Test Samples                                                               |
 |-----------|:--------------------------------------------------------------------------:|:-------------------------------------------------------------------------:|
 |None       |![DecisionTreePetalTrainingData](A/images/DecisionTreePetalTrainingData.png)      | ![DecisionTreePetalTestData](A/images/DecisionTreePetalTestData.png)|
 |None       |![DecisionTreeSepalTrainingData](A/images/DecisionTreeSepalTrainingData.png)      | ![DecisionTreeSepalTestData](A/images/DecisionTreeSepalTestData.png)|
 
-Because simpler trees can often generalize data better than complex ones, specifying a max depth can often help avoid overffiting the data. The following graphs show the categorization of decision trees with a max depth of four. This decision tree still preforms well for petal data, and preforms better than the original decision tree for sepal samples</br>
+Because simpler trees can often generalize data better than complex ones, specifying a max depth can often help avoid overfitting the data. The following graphs show the categorization of decision trees with a max depth of four. This decision tree still performs well for petal data and performs better than the original decision tree for sepal samples.</br>
 
 |Max Depth  |Training Samples                                                            |Test Samples                                                               |
 |-----------|:--------------------------------------------------------------------------:|:-------------------------------------------------------------------------:|
 |4          |![DecisionTreeMaxDepth4PetalTrainingData](A/images/DecisionTreeMaxDepth4PetalTrainingData.png)| ![DecisionTreeMaxDepth4PetalTestData](A/images/DecisionTreeMaxDepth4PetalTestData.png)|
 |4          |![DecisionTreeMaxDepth4SepalTrainingData](A/images/DecisionTreeMaxDepth4SepalTrainingData.png)| ![DecisionTreeMaxDepth4SepalTestData](A/images/DecisionTreeMaxDepth4SepalTestData.png)|
 
-**K-nearest Neighbors**   </br>
+**K-nearest Neighbors** The second algorithm implemented in this application was the k-nearest neighbors algorithm. This is another form of supervised learning. In this algorithm, new data is compared with old data FINISH</br>
+
+In these examples, ```k``` is set to 3, so the algorithm searches for the closest 3 datapoints to categorize data. This algorithm performs much better than the decision tree algorithm and is less prone to overfitting the data. It still performs better than on the petal data than the sepal data.</br>
 
 |Training Samples                                                                 |Test Samples                                                                   |
 |:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
@@ -74,6 +76,8 @@ Because simpler trees can often generalize data better than complex ones, specif
 |Back propagation               |0.975000                       |0.966667                       |97%                            |
 
 ### Lessons Learned
+
+This project has helped provide an understanding of different machine learning classification algorithms. For this dataset, back propagation clearly performed better than any application, but the other algorithms have their merits too.</br>
 
 ### Digit Data Comparison
 
