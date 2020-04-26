@@ -1,0 +1,100 @@
+---------------------------------------------------------------------------------------------
+Decision Tree
+5cm x 3cm sepal and 1cm x 0cm petal: ['setosa']
+Test accuracy score: 0.900000
+Confusion matrix:
+[[ 8  0  0]
+ [ 0 11  1]
+ [ 0  2  8]]
+Classification report:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00         8
+           1       0.85      0.92      0.88        12
+           2       0.89      0.80      0.84        10
+
+    accuracy                           0.90        30
+   macro avg       0.91      0.91      0.91        30
+weighted avg       0.90      0.90      0.90        30
+
+Training accuracy score: 0.950000 (0.055277)
+---------------------------------------------------------------------------------------------
+Decision Tree Max Depth 4
+5cm x 3cm sepal and 1cm x 0cm petal: ['setosa']
+Test accuracy score: 0.933333
+Confusion matrix:
+[[ 8  0  0]
+ [ 0 11  1]
+ [ 0  1  9]]
+Classification report:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00         8
+           1       0.92      0.92      0.92        12
+           2       0.90      0.90      0.90        10
+
+    accuracy                           0.93        30
+   macro avg       0.94      0.94      0.94        30
+weighted avg       0.93      0.93      0.93        30
+
+Training accuracy score: 0.950000 (0.055277)
+---------------------------------------------------------------------------------------------
+K Nearest Neighbors
+5cm x 3cm sepal and 1cm x 0cm petal: ['setosa']
+Test accuracy score: 0.933333
+Confusion matrix:
+[[ 8  0  0]
+ [ 0 12  0]
+ [ 0  2  8]]
+Classification report:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00         8
+           1       0.86      1.00      0.92        12
+           2       1.00      0.80      0.89        10
+
+    accuracy                           0.93        30
+   macro avg       0.95      0.93      0.94        30
+weighted avg       0.94      0.93      0.93        30
+
+Training accuracy score: 0.958333 (0.055902)
+---------------------------------------------------------------------------------------------
+K Means Clustering
+5cm x 3cm sepal and 1cm x 0cm petal: ['versicolor']
+Test accuracy score: 0.900000
+Confusion matrix:
+[[ 8  0  0]
+ [ 0 11  1]
+ [ 0  2  8]]
+Classification report:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00         8
+           1       0.85      0.92      0.88        12
+           2       0.89      0.80      0.84        10
+
+    accuracy                           0.90        30
+   macro avg       0.91      0.91      0.91        30
+weighted avg       0.90      0.90      0.90        30
+
+Training accuracy score: 0.166667 (0.197203)
+---------------------------------------------------------------------------------------------
+Back propagation
+5cm x 3cm sepal and 1cm x 0cm petal: ['versicolor']
+Test accuracy score: 0.966667
+Confusion matrix:
+[[ 8  0  0]
+ [ 0 12  0]
+ [ 0  1  9]]
+Classification report:
+              precision    recall  f1-score   support
+
+           0       1.00      1.00      1.00         8
+           1       0.92      1.00      0.96        12
+           2       1.00      0.90      0.95        10
+
+    accuracy                           0.97        30
+   macro avg       0.97      0.97      0.97        30
+weighted avg       0.97      0.97      0.97        30
+
+Training accuracy score: 0.975000 (0.038188)
