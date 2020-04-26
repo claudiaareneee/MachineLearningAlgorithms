@@ -62,12 +62,12 @@ In order to visualize the effectiveness of the decision tree aglorithm on this d
 |![BackpropagationPetalTrainingData](A/images/BackpropagationPetalTrainingData.png)     |![BackpropagationPetalTestData](A/images/BackpropagationPetalTestData.png)     |
 |![BackpropagationSepalTrainingData](A/images/BackpropagationSepalTrainingData.png)     |![BackpropagationSepalTestData](A/images/BackpropagationSepalTestData.png)     |
 
-|Algorithm                      |Training Accuracy              |Test Accuracy                  |Confusion Matrix                           |Classification report          |
-|-------------------------------|-------------------------------|-------------------------------|-------------------------------------------|-------------------------------|
-|Decision Tree                  |0.950000                       |0.900000                       |```[[ 8  0  0], [ 0 10  1], [ 0  2  9]]``` |90%                            |
-|Decision Tree Max Depth 4      |0.950000                       |0.933333                       |```[[ 8  0  0], [ 0 10  1], [ 0  2  9]]``` |90%                            |
-|K Nearest Neighbors            |0.958333                       |0.933333                       |```[[ 8  0  0], [ 0 10  1], [0  1 10]```   |93%                            |
-|Back propagation               |0.975000                       |0.966667                       |```[[ 8  0  0], [ 0 10  1], [ 0  0 11]]``` |97%                            |
+|Algorithm                      |Training Accuracy              |Test Accuracy                  |Classification report          |
+|-------------------------------|-------------------------------|-------------------------------|-------------------------------|
+|Decision Tree                  |0.950000                       |0.900000                       |90%                            |
+|Decision Tree Max Depth 4      |0.950000                       |0.933333                       |93%                            |
+|K Nearest Neighbors            |0.958333                       |0.933333                       |93%                            |
+|Back propagation               |0.975000                       |0.966667                       |97%                            |
 
 ### Lessons Learned
 
