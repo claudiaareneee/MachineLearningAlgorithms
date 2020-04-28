@@ -1,170 +1,62 @@
-# importing dependencies 
-import numpy as np 
-import matplotlib.pyplot as plt 
+import numpy as np
 
-# creating data 
-mean = np.array([5.0, 6.0]) 
-cov = np.array([[1.0, 0.95], [0.95, 1.2]]) 
-data = np.random.multivariate_normal(mean, cov, 8000) 
-
-# visualising data 
-plt.scatter(data[:500, 0], data[:500, 1], marker = '.') 
-plt.show() 
-
-# train-test-split 
-data = np.hstack((np.ones((data.shape[0], 1)), data)) 
-
-split_factor = 0.90
-split = int(split_factor * data.shape[0]) 
-
-X_train = data[:split, :-1] 
-y_train = data[:split, -1].reshape((-1, 1)) 
-X_test = data[split:, :-1] 
-y_test = data[split:, -1].reshape((-1, 1)) 
-
-print("Number of examples in training set = % d"%(X_train.shape[0])) 
-print("Number of examples in testing set = % d"%(X_test.shape[0])) 
-
-# linear regression using "mini-batch" gradient descent 
-# function to compute hypothesis / predictions 
-def hypothesis(X, theta): 
-	return np.dot(X, theta) 
-
-# function to compute gradient of error function w.r.t. theta 
-def gradient(X, y, theta): 
-	h = hypothesis(X, theta) 
-	grad = np.dot(X.transpose(), (h - y)) 
-	return grad 
-
-# function to compute the error for current values of theta 
-def cost(X, y, theta): 
-	h = hypothesis(X, theta) 
-	J = np.dot((h - y).transpose(), (h - y)) 
-	J /= 2
-	return J[0] 
-
-# function to create a list containing mini-batches 
-def create_mini_batches(X, y, batch_size): 
-	mini_batches = [] 
-	data = np.hstack((X, y)) 
-	np.random.shuffle(data) 
-	n_minibatches = data.shape[0] // batch_size 
-	i = 0
-
-	for i in range(n_minibatches + 1): 
-		mini_batch = data[i * batch_size:(i + 1)*batch_size, :] 
-		X_mini = mini_batch[:, :-1] 
-		Y_mini = mini_batch[:, -1].reshape((-1, 1)) 
-		mini_batches.append((X_mini, Y_mini)) 
-	if data.shape[0] % batch_size != 0: 
-		mini_batch = data[i * batch_size:data.shape[0]] 
-		X_mini = mini_batch[:, :-1] 
-		Y_mini = mini_batch[:, -1].reshape((-1, 1)) 
-		mini_batches.append((X_mini, Y_mini)) 
-	return mini_batches 
-
-# function to perform mini-batch gradient descent 
-def gradientDescent(X, y, learning_rate = 0.001, batch_size = 32): 
-	theta = np.zeros((X.shape[1], 1)) 
-	error_list = [] 
-	max_iters = 3
-	for itr in range(max_iters): 
-		mini_batches = create_mini_batches(X, y, batch_size) 
-		for mini_batch in mini_batches: 
-			X_mini, y_mini = mini_batch 
-			theta = theta - learning_rate * gradient(X_mini, y_mini, theta) 
-			error_list.append(cost(X_mini, y_mini, theta)) 
-
-	return theta, error_list 
-
-# function to perform batch gradient descent 
-def gradientDescentFull(X, y, learning_rate = 0.001): 
-	theta = np.zeros((X.shape[1], 1)) 
-	error_list = [] 
-	max_iters = 1000
-	for itr in range(max_iters): 
-		theta = theta - learning_rate * gradient(X, y, theta) 
-		error_list.append(cost(X, y, theta)) 
-
-	return theta, error_list 
-
-# Batch
-print("-----------------------------------------------------------------------") 
-print("Batch") 
-
-theta, error_list = gradientDescentFull(X_train, y_train) 
-print("Bias = ", theta[0]) 
-print("Coefficients = ", theta[1:]) 
-
-# visualising gradient descent 
-plt.plot(error_list) 
-plt.xlabel("Number of iterations") 
-plt.ylabel("Cost")
-plt.title("Batch") 
-plt.show() 
-
-
-# predicting output for X_test 
-y_pred = hypothesis(X_test, theta) 
-plt.scatter(X_test[:, 1], y_test[:, ], marker = '.') 
-plt.plot(X_test[:, 1], y_pred, color = 'orange') 
-plt.title("Batch") 
-plt.show() 
-
-# calculating error in predictions 
-error = np.sum(np.abs(y_test - y_pred) / y_test.shape[0]) 
-print("Mean absolute error = ", error)
-
-# Stochastic
-print("-----------------------------------------------------------------------") 
-print("Stochastic") 
-
-theta, error_list = gradientDescent(X_train, y_train, batch_size=1) 
-print("Bias = ", theta[0]) 
-print("Coefficients = ", theta[1:]) 
-
-# visualising gradient descent 
-plt.plot(error_list) 
-plt.xlabel("Number of iterations") 
-plt.ylabel("Cost") 
-plt.title("Stochastic") 
-plt.show() 
-
-
-# predicting output for X_test 
-y_pred = hypothesis(X_test, theta) 
-plt.scatter(X_test[:, 1], y_test[:, ], marker = '.') 
-plt.plot(X_test[:, 1], y_pred, color = 'orange')
-plt.title("Stochastic") 
-plt.show() 
-
-# calculating error in predictions 
-error = np.sum(np.abs(y_test - y_pred) / y_test.shape[0]) 
-print("Mean absolute error = ", error)
-
-# Mini-batch
-print("-----------------------------------------------------------------------") 
-print("Mini-batch") 
-
-theta, error_list = gradientDescent(X_train, y_train) 
-print("Bias = ", theta[0]) 
-print("Coefficients = ", theta[1:]) 
-
-# visualising gradient descent 
-plt.plot(error_list) 
-plt.xlabel("Number of iterations") 
-plt.ylabel("Cost") 
-plt.title("Mini-batch") 
-plt.show() 
-
-
-# predicting output for X_test 
-y_pred = hypothesis(X_test, theta) 
-plt.scatter(X_test[:, 1], y_test[:, ], marker = '.') 
-plt.plot(X_test[:, 1], y_pred, color = 'orange') 
-plt.title("Mini-batch") 
-plt.show() 
-
-# calculating error in predictions 
-error = np.sum(np.abs(y_test - y_pred) / y_test.shape[0]) 
-print("Mean absolute error = ", error)
+# Function for mini batch Gradient Descent
+def Minibatch_GD (Learning_Rate,num_iterations,X,y,Minibatch):
+    # Part 1: Mini Batch 
+    np.random.seed(1000)
+    N=len(X)
+    mini_batches=[]
+    
+    #Step 1: Shuffle (X,y)
+    permutation=list(np.random.permutation(N))
+    shuffled_X=X[permutation,:]
+    shuffled_y=y[permutation]
+    
+    #Step 2: Partition
+    num_complete_minibatches=int(np.floor(N/Minibatch))
+    
+    for i in range(num_complete_minibatches):
+        mini_batch_X=shuffled_X[i*Minibatch:(i+1)*Minibatch,:]
+        mini_batch_y=shuffled_y[i*Minibatch:(i+1)*Minibatch]
+        
+        mini_batch = (mini_batch_X, mini_batch_y)
+        mini_batches.append(mini_batch)
+    
+    if N % Minibatch !=0:
+        mini_batch_X=shuffled_X[N-Minibatch:N,:]
+        mini_batch_y=shuffled_y[N-Minibatch:N]
+        
+        mini_batch = (mini_batch_X, mini_batch_y)
+        mini_batches.append(mini_batch)
+    
+    # Part 2: Gradient Descent
+    w=np.zeros((X.shape[1],1))
+    b=0
+    costs=[]
+    
+    for i in range(num_iterations):
+        for j in range(num_complete_minibatches+1):
+            #Select Minibatch
+            XX=mini_batches[j][0]
+            yy=mini_batches[j][1]
+            #Step 2: Apply Sigmoid Function and get y prediction
+            Z=np.dot(w.T,XX.T)+b
+            y_pred=1/(1+1/np.exp(Z))
+            
+            #Step 3: Calculate Gradient
+            dw=1/Minibatch*np.dot(XX.T,(y_pred-yy).T)
+            db=1/Minibatch*np.sum(y_pred-yy)
+            #Step 4: Update w & b
+            w = w - Learning_Rate * dw
+            b = b - Learning_Rate * db
+        
+        #Step 5: Calculate Loss Function       
+        Z_full=np.dot(w.T,X.T)+b
+        y_pred_full=1/(1+1/np.exp(Z_full))
+        cost=-(1/N)*np.sum(y*np.log(y_pred_full)+(1-y)*np.log(1-y_pred_full))
+        
+        if i % 1000 ==0:
+            costs.append(cost)
+            #print(cost)
+            
+    return(w,b,costs)
