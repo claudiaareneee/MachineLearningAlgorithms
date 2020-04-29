@@ -1,5 +1,5 @@
 # https://wiseodd.github.io/techblog/2016/06/21/nn-sgd/
-from sklearn.datasets import make_moons
+from sklearn.datasets import make_moons, load_iris
 from sklearn import datasets, model_selection
 from sklearn.utils import shuffle
 import matplotlib.pyplot as plt
@@ -12,7 +12,7 @@ n_class = 2
 n_iter = 10
 
 def plotData(x, y, title):
-    plt.scatter(X[:,0], X[:,1], c=y, edgecolor='k', s=20)
+    plt.scatter(x[:,0], x[:,1], c=y, edgecolor='k', s=20)
     # plt.xlabel(iris.feature_names[x])
     # plt.ylabel(iris.feature_names[y])
     plt.title(title)
@@ -145,12 +145,13 @@ if __name__ == "__main__":
     X, y = make_moons(n_samples=10000, random_state=42, noise=0.1)
     X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, random_state=42)
 
+    # iris = load_iris()
+    # X = iris.data[0:99]
+    # y = iris.target[0:99]
+    # X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size = 0.20)
+
     plotData(X, y, "test")
 
     doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=1, title="Batch Gradient Descent")
     doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=len(X_train), title="Stochastic Gradient Descent")
     doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=50, title="Mini Batch Gradient Descent")
-
-    doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=1, title="Batch Gradient Descent More Hidden Layers", n_hidden=3)
-    doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=len(X_train), title="Stochastic Gradient Descent More Hidden Layers", n_hidden=3)
-    doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=50, title="Mini Batch Gradient Descent More Hidden Layers", n_hidden=3)
