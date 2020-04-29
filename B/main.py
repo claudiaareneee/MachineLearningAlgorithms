@@ -106,7 +106,8 @@ def get_minibatch_grad(model, X_train, y_train):
     # Backprop using the informations we get from the current minibatch
     return backward(model, np.array(xs), np.array(hs), np.array(errs))
 
-def doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size = 50, title="Gradient Descent"):
+def doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size = 50, title="Gradient Descent", n_hidden=100):
+    print(title)
     # n_experiment = 100
     n_experiment = 1
 
@@ -116,7 +117,7 @@ def doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size = 50, titl
     for k in range(n_experiment):
         print ("Experiment " + str(k))
         # Reset model
-        model = make_network()
+        model = make_network(n_hidden=n_hidden)
 
         # Train the model
         model = sgd(model, X_train, y_train, minibatch_size)
@@ -133,6 +134,7 @@ def doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size = 50, titl
         # Compare the predictions with the true labels and take the percentage
         accs[k] = (y_pred == y_test).sum() / y_test.size
         print(y_pred)
+        plt.title(title)
         plt.scatter(X_test[:,0], X_test[:,1], c=y_pred, edgecolor='k', s=20)
         plt.savefig("B/images/" + title.replace(" ", "-"))
 
@@ -140,13 +142,15 @@ def doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size = 50, titl
 
 
 if __name__ == "__main__":
-    X, y = make_moons(n_samples=5000, random_state=42, noise=0.1)
+    X, y = make_moons(n_samples=10000, random_state=42, noise=0.1)
     X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, random_state=42)
 
     plotData(X, y, "test")
 
     doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=1, title="Batch Gradient Descent")
-
+    doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=len(X_train), title="Stochastic Gradient Descent")
     doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=50, title="Mini Batch Gradient Descent")
 
-    doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=len(X_train), title="Stochastic Gradient Descent")
+    doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=1, title="Batch Gradient Descent More Hidden Layers", n_hidden=3)
+    doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=len(X_train), title="Stochastic Gradient Descent More Hidden Layers", n_hidden=3)
+    doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=50, title="Mini Batch Gradient Descent More Hidden Layers", n_hidden=3)
