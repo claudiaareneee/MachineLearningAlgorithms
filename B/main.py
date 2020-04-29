@@ -19,7 +19,7 @@ def plotData(x, y, title):
     plt.savefig("B/images/" + title.replace(" ", "-"))
     plt.clf()
 
-def make_network(n_hidden=100, n_feature=2, n_class=2, n_iter=10):
+def make_network(n_hidden=100, n_feature=2, n_class=2):
     # Initialize weights with Standard Normal random variables
     model = dict(
         W1=np.random.randn(n_feature, n_hidden),
