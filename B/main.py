@@ -10,7 +10,9 @@ import time
 
 n_feature = 2
 n_class = 2
-n_iter = 10
+n_iter = 100
+
+global file
 
 def plotData(x, y, title):
     plt.scatter(x[:,0], x[:,1], c=y, edgecolor='k', s=20)
@@ -58,9 +60,11 @@ def backward(model, xs, hs, errs):
 
 def sgd(model, X_train, y_train, minibatch_size):
     times = []
+
+    overall_time = time.time()
     
     for iter in range(n_iter):
-        print('Iteration {}'.format(iter))
+        # file.write('Iteration {}\n'.format(iter))
 
         initial_time = time.time()
 
@@ -77,7 +81,8 @@ def sgd(model, X_train, y_train, minibatch_size):
         times.append(time.time() - initial_time)
 
     times = np.array(times)
-    print( "Mean iteration time: " + str(times.mean()))
+    file.write("Mean iteration time: " + str(times.mean()) + "\n")
+    file.write("Total time taken: " + str(time.time() - overall_time) + "\n")
     return model
 
 def sgd_step(model, X_train, y_train):
@@ -116,7 +121,8 @@ def get_minibatch_grad(model, X_train, y_train):
     return backward(model, np.array(xs), np.array(hs), np.array(errs))
 
 def doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size = 50, title="Gradient Descent", n_hidden=100):
-    print(title)
+    file.write("---------------------------------------------------------------------------------------------\n")
+    file.write(title + "\n")
     # n_experiment = 100
     n_experiment = 1
 
@@ -124,7 +130,7 @@ def doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size = 50, titl
     accs = np.zeros(n_experiment)
 
     for k in range(n_experiment):
-        print ("Experiment " + str(k))
+        file.write ("Experiment " + str(k) + "\n")
         # Reset model
         model = make_network(n_hidden=n_hidden)
 
@@ -142,15 +148,17 @@ def doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size = 50, titl
 
         # Compare the predictions with the true labels and take the percentage
         accs[k] = (y_pred == y_test).sum() / y_test.size
-        print(y_pred)
+        file.write(str(y_pred) + "\n")
         plt.title(title)
         plt.scatter(X_test[:,0], X_test[:,1], c=y_pred, edgecolor='k', s=20)
         plt.savefig("B/images/" + title.replace(" ", "-"))
 
-    print('Mean accuracy: {}, std: {}'.format(accs.mean(), accs.std()))
+    file.write('Mean accuracy: {}, std: {}\n'.format(accs.mean(), accs.std()))
 
 
 if __name__ == "__main__":
+    file = open('metricsB.txt', 'w')
+
     X, y = make_moons(n_samples=10000, random_state=42, noise=0.1)
     X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, random_state=42)
 
