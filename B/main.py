@@ -1,10 +1,10 @@
 # https://wiseodd.github.io/techblog/2016/06/21/nn-sgd/
 from sklearn.datasets import make_moons
 from sklearn import datasets, model_selection
+from sklearn.utils import shuffle
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import numpy as np
-from random import shuffle
 import random
 
 def plotData(x, y, title):
@@ -119,6 +119,7 @@ if __name__ == "__main__":
     accs = np.zeros(n_experiment)
 
     for k in range(n_experiment):
+        print ("Experiment " + str(k))
         # Reset model
         model = make_network()
 
