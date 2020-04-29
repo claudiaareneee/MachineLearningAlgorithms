@@ -7,6 +7,10 @@ from matplotlib.colors import ListedColormap
 import numpy as np
 import random
 
+n_feature = 2
+n_class = 2
+n_iter = 10
+
 def plotData(x, y, title):
     plt.scatter(X[:,0], X[:,1], c=y, edgecolor='k', s=20)
     # plt.xlabel(iris.feature_names[x])
@@ -102,17 +106,7 @@ def get_minibatch_grad(model, X_train, y_train):
     # Backprop using the informations we get from the current minibatch
     return backward(model, np.array(xs), np.array(hs), np.array(errs))
 
-if __name__ == "__main__":
-    X, y = make_moons(n_samples=5000, random_state=42, noise=0.1)
-    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, random_state=42)
-
-    plotData(X, y, "test")
-    
-    n_feature = 2
-    n_class = 2
-    n_iter = 10
-
-    minibatch_size = 50
+def doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size = 50, title="Gradient Descent"):
     # n_experiment = 100
     n_experiment = 1
 
@@ -140,6 +134,19 @@ if __name__ == "__main__":
         accs[k] = (y_pred == y_test).sum() / y_test.size
         print(y_pred)
         plt.scatter(X_test[:,0], X_test[:,1], c=y_pred, edgecolor='k', s=20)
-        plt.show()
+        plt.savefig("B/images/" + title.replace(" ", "-"))
 
     print('Mean accuracy: {}, std: {}'.format(accs.mean(), accs.std()))
+
+
+if __name__ == "__main__":
+    X, y = make_moons(n_samples=5000, random_state=42, noise=0.1)
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, random_state=42)
+
+    plotData(X, y, "test")
+
+    doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=1, title="Batch Gradient Descent")
+
+    doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=50, title="Mini Batch Gradient Descent")
+
+    doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=len(X_train), title="Stochastic Gradient Descent")
