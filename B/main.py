@@ -57,12 +57,12 @@ def backward(model, xs, hs, errs):
     return dict(W1=dW1, W2=dW2)
 
 def sgd(model, X_train, y_train, minibatch_size):
-    times = np.array
+    times = []
     
     for iter in range(n_iter):
         print('Iteration {}'.format(iter))
 
-        time = time.time()
+        initial_time = time.time()
 
         # Randomize data point
         X_train, y_train = shuffle(X_train, y_train)
@@ -74,8 +74,9 @@ def sgd(model, X_train, y_train, minibatch_size):
 
             model = sgd_step(model, X_train_mini, y_train_mini)
         
-        times.append(time - time.time())
+        times.append(time.time() - initial_time)
 
+    times = np.array(times)
     print( "Mean iteration time: " + str(times.mean()))
     return model
 
