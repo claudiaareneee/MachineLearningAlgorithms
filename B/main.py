@@ -1,46 +1,140 @@
-# https://towardsdatascience.com/an-introduction-to-gradient-descent-c9cca5739307
-
-from sklearn import datasets
-import numpy as np
-import pandas as pd
+# https://wiseodd.github.io/techblog/2016/06/21/nn-sgd/
+from sklearn.datasets import make_moons
+from sklearn import datasets, model_selection
 import matplotlib.pyplot as plt
-import matplotlib.lines as mlines
-from batch import Batch_GD
-from minibatch import Minibatch_GD
-from stochastic import Stochastic_GD
+from matplotlib.colors import ListedColormap
+import numpy as np
+from random import shuffle
+import random
 
-# Load data
-iris = datasets.load_iris()
-X=iris.data[0:99,:2]
-y=iris.target[0:99]
-# Plot the training points
-x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
-y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
-plt.figure(2, figsize=(8, 6))
-plt.clf()
-plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Set1,edgecolor='k')
-plt.xlabel('Sepal length')
-plt.ylabel('Sepal width')
-plt.xlim(x_min, x_max)
-plt.ylim(y_min, y_max)
+def plotData(x, y, title):
+    plt.scatter(X[:,0], X[:,1], c=y, edgecolor='k', s=20)
+    # plt.xlabel(iris.feature_names[x])
+    # plt.ylabel(iris.feature_names[y])
+    plt.title(title)
+    plt.savefig("B/images/" + title.replace(" ", "-"))
+    plt.clf()
 
-# Run a function
-Result_BatchGD=Batch_GD(Learning_Rate=0.01,num_iterations=100000,X=X,y=y)
+def make_network(n_hidden=100, n_feature=2, n_class=2, n_iter=10):
+    # Initialize weights with Standard Normal random variables
+    model = dict(
+        W1=np.random.randn(n_feature, n_hidden),
+        W2=np.random.randn(n_hidden, n_class)
+    )
 
-# Run a function
-Result_Stoc_GD=Stochastic_GD(Learning_Rate=0.01,num_iterations=2000,X=X,y=y)
+    return model
 
-# Run a function
-Result_MiniGD=Minibatch_GD(Learning_Rate=0.01,num_iterations=100000,X=X,y=y,Minibatch=50)
+def softmax(x):
+    return np.exp(x) / np.exp(x).sum()
 
-# Plot linear classification
-fig, ax = plt.subplots()
-ax.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Set1,edgecolor='k')
-line_B_GD=mlines.Line2D([0,7],[-0.5527,4.1577],color='red')
-line_Mini_GD=mlines.Line2D([0,7],[-0.56185,4.1674],color='blue')
-line_Sto_GD=mlines.Line2D([0,7],[-0.5488,4.1828],color='green')
-ax.add_line(line_B_GD)
-ax.add_line(line_Mini_GD)
-ax.add_line(line_Sto_GD)
-ax.set_xlabel('Sepal length')
-plt.show()
+def forward(x, model):
+    # Input to hidden
+    h = x @ model['W1']
+    # ReLU non-linearity
+    h[h < 0] = 0
+
+    # Hidden to output
+    prob = softmax(h @ model['W2'])
+
+    return h, prob
+
+def backward(model, xs, hs, errs):
+    """xs, hs, errs contain all informations (input, hidden state, error) of all data in the minibatch"""
+    # errs is the gradients of output layer for the minibatch
+    dW2 = hs.T @ errs
+
+    # Get gradient of hidden layer
+    dh = errs @ model['W2'].T
+    dh[hs <= 0] = 0
+
+    dW1 = xs.T @ dh
+
+    return dict(W1=dW1, W2=dW2)
+
+def sgd(model, X_train, y_train, minibatch_size):
+    for iter in range(n_iter):
+        print('Iteration {}'.format(iter))
+
+        # Randomize data point
+        X_train, y_train = shuffle(X_train, y_train)
+
+        for i in range(0, X_train.shape[0], minibatch_size):
+            # Get pair of (X, y) of the current minibatch/chunk
+            X_train_mini = X_train[i:i + minibatch_size]
+            y_train_mini = y_train[i:i + minibatch_size]
+
+            model = sgd_step(model, X_train_mini, y_train_mini)
+
+    return model
+
+def sgd_step(model, X_train, y_train):
+    grad = get_minibatch_grad(model, X_train, y_train)
+    model = model.copy()
+
+    # Update every parameters in our networks (W1 and W2) using their gradients
+    for layer in grad:
+        # Learning rate: 1e-4
+        model[layer] += 1e-4 * grad[layer]
+
+    return model
+
+def get_minibatch_grad(model, X_train, y_train):
+    xs, hs, errs = [], [], []
+
+    for x, cls_idx in zip(X_train, y_train):
+        h, y_pred = forward(x, model)
+
+        # Create probability distribution of true label
+        y_true = np.zeros(n_class)
+        y_true[int(cls_idx)] = 1.
+
+        # Compute the gradient of output layer
+        err = y_true - y_pred
+
+        # Accumulate the informations of minibatch
+        # x: input
+        # h: hidden state
+        # err: gradient of output layer
+        xs.append(x)
+        hs.append(h)
+        errs.append(err)
+
+    # Backprop using the informations we get from the current minibatch
+    return backward(model, np.array(xs), np.array(hs), np.array(errs))
+
+if __name__ == "__main__":
+    X, y = make_moons(n_samples=5000, random_state=42, noise=0.1)
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, random_state=42)
+
+    plotData(X, y, "test")
+    
+    n_feature = 2
+    n_class = 2
+    n_iter = 10
+
+    minibatch_size = 50
+    n_experiment = 100
+
+    # Create placeholder to accumulate prediction accuracy
+    accs = np.zeros(n_experiment)
+
+    for k in range(n_experiment):
+        # Reset model
+        model = make_network()
+
+        # Train the model
+        model = sgd(model, X_train, y_train, minibatch_size)
+
+        y_pred = np.zeros_like(y_test)
+
+        for i, x in enumerate(X_test):
+            # Predict the distribution of label
+            _, prob = forward(x, model)
+            # Get label by picking the most probable one
+            y = np.argmax(prob)
+            y_pred[i] = y
+
+        # Compare the predictions with the true labels and take the percentage
+        accs[k] = (y_pred == y_test).sum() / y_test.size
+
+    print('Mean accuracy: {}, std: {}'.format(accs.mean(), accs.std()))
