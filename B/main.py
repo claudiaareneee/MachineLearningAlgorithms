@@ -113,7 +113,8 @@ if __name__ == "__main__":
     n_iter = 10
 
     minibatch_size = 50
-    n_experiment = 100
+    # n_experiment = 100
+    n_experiment = 1
 
     # Create placeholder to accumulate prediction accuracy
     accs = np.zeros(n_experiment)
@@ -137,5 +138,8 @@ if __name__ == "__main__":
 
         # Compare the predictions with the true labels and take the percentage
         accs[k] = (y_pred == y_test).sum() / y_test.size
+        print(y_pred)
+        plt.scatter(X_test[:,0], X_test[:,1], c=y_pred, edgecolor='k', s=20)
+        plt.show()
 
     print('Mean accuracy: {}, std: {}'.format(accs.mean(), accs.std()))
