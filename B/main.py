@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import numpy as np
 import random
+import time
 
 n_feature = 2
 n_class = 2
@@ -56,8 +57,12 @@ def backward(model, xs, hs, errs):
     return dict(W1=dW1, W2=dW2)
 
 def sgd(model, X_train, y_train, minibatch_size):
+    times = np.array
+    
     for iter in range(n_iter):
         print('Iteration {}'.format(iter))
+
+        time = time.time()
 
         # Randomize data point
         X_train, y_train = shuffle(X_train, y_train)
@@ -68,7 +73,10 @@ def sgd(model, X_train, y_train, minibatch_size):
             y_train_mini = y_train[i:i + minibatch_size]
 
             model = sgd_step(model, X_train_mini, y_train_mini)
+        
+        times.append(time - time.time())
 
+    print( "Mean iteration time: " + str(times.mean()))
     return model
 
 def sgd_step(model, X_train, y_train):
