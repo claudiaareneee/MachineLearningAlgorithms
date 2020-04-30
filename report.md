@@ -6,8 +6,6 @@ This project was developed using [Python 3.7.7](https://www.python.org/downloads
 
 ## Part A - Classification Algorithms
 
-_Two to three pages_
-
 ### Implementation
 
 Part A of this project was designed to teach about different classification algorithms. Several different classification algorithms were used on the famous Iris dataset to predict the species of an Iris given the sepal width, sepal length, petal width, and petal length. These classification algorithms include the decision tree, k-nearest neighbors, neural networks through backpropagation, and k-means clustering algorithms. These algorithms were implemented through [Scikit-learn](https://scikit-learn.org/stable/index.html).</br>
@@ -24,7 +22,6 @@ For each algorithm, the Iris data set was split into test data and training data
 
 ### Results
 
-_Which classification learning algorithm performed best?_</br>
 *For the graphs in this section, orange represents Sentosa, cyan represents Versicolor, and blue represents Virginica.*
 
 **Decision Tree Learning** The first algorithm implemented in this application was decision tree learning. Decision tree learning is a type of supervised learning where the samples are split based on the value of attributes in order to classify each sample. In general, simpler trees are better than complex ones because they tend to generalize the problem better, and choosing the correct attributes can lead to simpler trees. Fitting the tree with the training data and all four attributes (petal width and height and sepal width and height) produced the following tree. Decision nodes begin with a constraint. For example, the root node begins with ```X[2] <= 2.45```. Leaf nodes show the total number of samples in each category. Of the training data with a petal length of less than or equal to 2.45, all 42 samples were in the first category, Sentosa. This tree shows how attributes can be used to categorize data.</br>
@@ -94,8 +91,6 @@ This project has helped provide an understanding of different machine learning c
 
 ## Part B - Gradient Decent
 
-_Two pages_
-
 ### Implementation
 
 Part B was designed to increase the understanding of gradient descent and different implementations of gradient descent. Gradient descent is the common method used to adjust input weights in neural networks. There are three different variants: batch, stochastic, and mini-batch. The main premise of each of these is the same. The idea is to propagate forward through the neural network, determine the error of the output, and propagate backwards through the network to adjust the weights of the network based on this error. Batch, stochastic, and mini-batch gradient descent vary on the size of the data being tested. For batch gradient descent, the entire dataset is passed through the neural network at each iteration. This is exceedingly slow for very large datasets, but produces a stable learning curve. For stochastic gradient descent, only one random sample is tested at each iteration. Stochastic gradient descent is faster, but it is less stable. Mini-batch combines batch and stochastic gradient descent to test a portion of the data at each iteration. It bridges the advantages and disadvantages between batch and stochastic gradient descent</br>
@@ -133,6 +128,7 @@ The following chart shows the performance of each algorithm. In this program, ba
 ## References
 
 Part A
+
 * [Brainscribble](http://stephanie-w.github.io/brainscribble/classification-algorithms-on-iris-dataset.html)
 * [CodeBagNg](https://medium.com/codebagng/basic-analysis-of-the-iris-data-set-using-python-2995618a6342)
 * [Haydar AI](https://medium.com/@haydar_ai/learning-data-science-day-21-decision-tree-on-iris-dataset-267f3219a7fa)
