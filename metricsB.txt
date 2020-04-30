@@ -1,21 +1,21 @@
 ---------------------------------------------------------------------------------------------
 Batch Gradient Descent
 Experiment 0
-Mean iteration time: 0.5161228966712952
-Total time taken: 51.61248517036438
+Mean iteration time: 0.4987590169906616
+Total time taken: 49.876094818115234
 [1 1 0 ... 1 0 0]
-Mean accuracy: 0.8852, std: 0.0
+Mean accuracy: 0.8844, std: 0.0
 ---------------------------------------------------------------------------------------------
 Stochastic Gradient Descent
 Experiment 0
-Mean iteration time: 0.2331838846206665
-Total time taken: 23.31887722015381
+Mean iteration time: 0.23631163597106933
+Total time taken: 23.63150382041931
 [1 1 0 ... 1 0 0]
-Mean accuracy: 0.8784, std: 0.0
+Mean accuracy: 0.8744, std: 0.0
 ---------------------------------------------------------------------------------------------
 Mini Batch Gradient Descent
 Experiment 0
-Mean iteration time: 0.23588470935821534
-Total time taken: 23.58867597579956
+Mean iteration time: 0.23177808046340942
+Total time taken: 23.177983045578003
 [1 1 0 ... 1 0 0]
-Mean accuracy: 0.886, std: 0.0
+Mean accuracy: 0.8848, std: 0.0

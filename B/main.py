@@ -18,7 +18,7 @@ def plotData(x, y, title):
     plt.scatter(x[:,0], x[:,1], c=y, edgecolor='k', s=20)
     # plt.xlabel(iris.feature_names[x])
     # plt.ylabel(iris.feature_names[y])
-    plt.title(title)
+    # plt.title(title)
     plt.savefig("B/images/" + title.replace(" ", "-"))
     plt.clf()
 
