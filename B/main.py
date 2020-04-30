@@ -1,4 +1,4 @@
-# https://wiseodd.github.io/techblog/2016/06/21/nn-sgd/
+# Sources: https://wiseodd.github.io/techblog/2016/06/21/nn-sgd/ and https://github.com/dennybritz/nn-from-scratch/blob/0b52553c84c8bd5fed4f0c890c98af802e9705e9/nn_from_scratch.py
 from sklearn.datasets import make_moons, load_iris, make_classification
 from sklearn import datasets, model_selection
 from sklearn.utils import shuffle
