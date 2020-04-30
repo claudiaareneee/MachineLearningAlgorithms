@@ -114,16 +114,20 @@ A data set was generated using Sci-Kit's ```make_moons``` function with 10000 sa
 
 ### Results and Analysis
 
-_Compare the training time and final performance of the neural networks trained using these three variants of gradient descent and report your results using at least one graph._</br>
-
 The folowing chart represents the differences between the different variants of gradient decent. The points are plotted according to their predicted value. </br>
 
 |Batch                                       |Stochastic                                 |Mini-batch                                 |
 |--------------------------------------------|-------------------------------------------|-------------------------------------------|
 |![Gradient Descent Graph](B/images/Batch-Gradient-Descent.png)|![Gradient Descent Graph](B/images/Stochastic-Gradient-Descent.png)|![Gradient Descent Graph](B/images/Mini-Batch-Gradient-Descent.png)|
 
+With 100 iterations and hiden nodes, all three algorithms classify the datapoints with similar accuracy. However, at lower iterations, they are more likely to have incorrect classifications. Batch performs the most steadily and consistently because it uses the entire dataset to train on each iteration. Stochastic is the most chaotic due to randomly chosing a datapoint for training. Mini-batch performs in between the two because it trains with a set of the data. These graphs also show that the classification follows a linear curve. The complexity of the curve is related to the number of hidden layers in the network. Because there is only one hidden layer, the best this program can do is to create a linear curve. Adding addtional hidden layers can increase the complexities of the curves that gradient descent algorithms create. </br>
+
+The following chart shows the performance of each algorithm. In this program, batch gradient descent takes twice as long as the other two algorithms, but it has good accuracy. Stochastic performs the fastest, but has the worst accuracy. Mini-batch is as fast as stochastic gradient descent with the accuracy of batch gradient descent. If interested, the full output of this application is located in [metricsB.txt](metricsB.txt).
+
 |                   |Batch                                       |Stochastic                                 |Mini-batch                                 |
 |-------------------|--------------------------------------------|-------------------------------------------|-------------------------------------------|
 |Mean iteration time|0.4987590                                   |0.2363116                                  |0.2317780                                  |
 |Total time taken   |49.8760                                     |23.6315                                    |23.1779                                    |
 |Mean accuracy      |0.8844                                      |0.8744                                     |0.8848                                     |
+
+## References
