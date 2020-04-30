@@ -108,7 +108,7 @@ Batch size
 * Stochastic: 1 sample
 * Mini-batch: 50 samples
 
-A data set was generated using Sci-Kit's ```make_moons``` function with 10000 samples that fall into 2 distinct categories. The data is plotted on the followin graph.</br>
+A data set was generated using Sci-Kit's ```make_moons``` function with 10000 samples that fall into 2 distinct categories. The data is plotted on the following graph.</br>
 
 ![Gradient Descent Graph](B/images/data.png)
 
@@ -116,3 +116,6 @@ A data set was generated using Sci-Kit's ```make_moons``` function with 10000 sa
 
 _Compare the training time and final performance of the neural networks trained using these three variants of gradient descent and report your results using at least one graph._</br>
 
+|Batch                                       |Stochastic                                 |Mini-batch                                 |
+|--------------------------------------------|-------------------------------------------|-------------------------------------------|
+|![Gradient Descent Graph](B/images/Batch-Gradient-Descent.png)|![Gradient Descent Graph](B/images/Stochastic-Gradient-Descent.png)|![Gradient Descent Graph](B/images/Mini-Batch-Gradient-Descent.png)|
