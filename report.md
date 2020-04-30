@@ -116,6 +116,14 @@ A data set was generated using Sci-Kit's ```make_moons``` function with 10000 sa
 
 _Compare the training time and final performance of the neural networks trained using these three variants of gradient descent and report your results using at least one graph._</br>
 
+The folowing chart represents the differences between the different variants of gradient decent. The points are plotted according to their predicted value. </br>
+
 |Batch                                       |Stochastic                                 |Mini-batch                                 |
 |--------------------------------------------|-------------------------------------------|-------------------------------------------|
 |![Gradient Descent Graph](B/images/Batch-Gradient-Descent.png)|![Gradient Descent Graph](B/images/Stochastic-Gradient-Descent.png)|![Gradient Descent Graph](B/images/Mini-Batch-Gradient-Descent.png)|
+
+|                   |Batch                                       |Stochastic                                 |Mini-batch                                 |
+|-------------------|--------------------------------------------|-------------------------------------------|-------------------------------------------|
+|Mean iteration time|0.4987590                                   |0.2363116                                  |0.2317780                                  |
+|Total time taken   |49.8760                                     |23.6315                                    |23.1779                                    |
+|Mean accuracy      |0.8844                                      |0.8744                                     |0.8848                                     |
