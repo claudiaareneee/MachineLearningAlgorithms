@@ -1,6 +1,8 @@
 # Machine Learning Algorithms
 
-The goal of this project is to compare different machine learning algorithms for different problems. Part A of this application focuses on using the Iris dataset to compare classification algorithms. Part B of this project focuses on different implementations of gradient decent.
+The goal of this project is to compare different machine learning algorithms for different problems. Part A of this application focuses on using the Iris dataset to compare classification algorithms. Part B of this project focuses on different implementations of gradient decent.</br>
+
+This project was developed using [Python 3.7.7](https://www.python.org/downloads/release/python-370/) and [Scikit-Learn](https://scikit-learn.org/stable/index.html). Additionally, the machine used to build and run the code is running MacOs Mojave (v10.14.6).</br>
 
 ## Part A - Classification Algorithms
 
@@ -9,8 +11,6 @@ _Two to three pages_
 ### Implementation
 
 Part A of this project was designed to teach about different classification algorithms. Several different classification algorithms were used on the famous Iris dataset to predict the species of an Iris given the sepal width, sepal length, petal width, and petal length. These classification algorithms include the decision tree, k-nearest neighbors, neural networks through backpropagation, and k-means clustering algorithms. These algorithms were implemented through [Scikit-learn](https://scikit-learn.org/stable/index.html).</br>
-
-This project was developed using [Python 3.7.7](https://www.python.org/downloads/release/python-370/) and [Scikit-Learn](https://scikit-learn.org/stable/index.html). Additionally, the machine used to build and run the code is running MacOs Mojave (v10.14.6).</br>
 
 The Iris dataset is comprised of 150 samples, and each sample records the width and length of both the petal and sepal. To visualize these samples, two graphs were created: one comparing petal width and length, the other comparing sepal width and length. The following images show these relationships and the categorization of each data point.</br>
 
@@ -96,12 +96,14 @@ This project has helped provide an understanding of different machine learning c
 
 _Two pages_
 
-### What you did
+### Implementation
 
-### Results
+Part B was designed to increase the understanding of gradient descent and different implentations of gradient descent. Gradient descent is the common method used to adjust input weights in neural networks. There are three different variants: batch, stocastic, and mini-batch. The main premise of each of these is the same. The idea is to propagate forward through the neural network, determine the error of the output, and propgate backwards through the network to adjust the weights of the network based on this error. Batch, stocastic, and mini-batch gradient descent vary on the size of the data being tested. For batch gradient descent, the entire dataset is passed through the neural network at each iteration. This is exceedingly slow for very large datasets, but produces a stable learning curve. For stocastic gradient descent, only one random sample is tested at each iteration. Stocastic gradient descent is faster, but it is less stable. Mini-batch combines batch and stocastic gradient descent to test a portion of the data at each iteration. It bridges the advantages and disadvantages between batch and stocastic gradient descent</br>
 
-Compare the training time and final performance of the neural networks trained using these three variants of gradient descent and report your results using at least one graph.
+For the implementation of these variants, code from [Agustinus Kristiadi](https://wiseodd.github.io/techblog/2016/06/21/nn-sgd/) was used and modified slightly. Because batch and stocastic gradient descent are essential extreme cases of mini-batch gradient descent, the same algorithm was used for all three, just with different parameters. FINISH</br>
 
-### Analysis
+### Results and Analysis
 
-Include a description of the neural network you trained: how many hidden layers and hidden units, how many input and output nodes, and the details of the learning algorithm (learning rate, momentum).
+Compare the training time and final performance of the neural networks trained using these three variants of gradient descent and report your results using at least one graph.</br>
+
+Include a description of the neural network you trained: how many hidden layers and hidden units, how many input and output nodes, and the details of the learning algorithm (learning rate, momentum)
