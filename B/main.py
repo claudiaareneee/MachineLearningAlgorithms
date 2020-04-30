@@ -167,7 +167,7 @@ if __name__ == "__main__":
     # y = iris.target[0:99]
     # X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size = 0.20)
 
-    plotData(X, y, "test")
+    plotData(X, y, "data.png")
 
     doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=1, title="Batch Gradient Descent")
     doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=len(X_train), title="Stochastic Gradient Descent")

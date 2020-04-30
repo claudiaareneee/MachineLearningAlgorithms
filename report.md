@@ -100,10 +100,17 @@ _Two pages_
 
 Part B was designed to increase the understanding of gradient descent and different implentations of gradient descent. Gradient descent is the common method used to adjust input weights in neural networks. There are three different variants: batch, stocastic, and mini-batch. The main premise of each of these is the same. The idea is to propagate forward through the neural network, determine the error of the output, and propgate backwards through the network to adjust the weights of the network based on this error. Batch, stocastic, and mini-batch gradient descent vary on the size of the data being tested. For batch gradient descent, the entire dataset is passed through the neural network at each iteration. This is exceedingly slow for very large datasets, but produces a stable learning curve. For stocastic gradient descent, only one random sample is tested at each iteration. Stocastic gradient descent is faster, but it is less stable. Mini-batch combines batch and stocastic gradient descent to test a portion of the data at each iteration. It bridges the advantages and disadvantages between batch and stocastic gradient descent</br>
 
-For the implementation of these variants, code from [Agustinus Kristiadi](https://wiseodd.github.io/techblog/2016/06/21/nn-sgd/) was used and modified slightly. Because batch and stocastic gradient descent are essential extreme cases of mini-batch gradient descent, the same algorithm was used for all three, just with different parameters. FINISH</br>
+For the implementation of these variants, code from [Agustinus Kristiadi](https://wiseodd.github.io/techblog/2016/06/21/nn-sgd/) was used and modified slightly. Because batch and stocastic gradient descent are essential extreme cases of mini-batch gradient descent, the same algorithm was used for all three, just with different parameters. This algorithm has 3 layers: one input layer with two nodes, one hidden layer with 100 nodes, and an output layer with 2 nodes. It uses the rectifier activation function (ReLU) and has a learning rate of 0.0001. </br>
+
+Batch size
+
+* Batch: Full dataset
+* Stocastic: 1 sample
+* Mini-batch: 50 samples
+
+A data set was generated using Sci-Kit's ```make_moons``` function with 10000 samples that fall into 2 distinct categories. </br>
 
 ### Results and Analysis
 
 Compare the training time and final performance of the neural networks trained using these three variants of gradient descent and report your results using at least one graph.</br>
 
-Include a description of the neural network you trained: how many hidden layers and hidden units, how many input and output nodes, and the details of the learning algorithm (learning rate, momentum)
