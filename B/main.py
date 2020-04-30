@@ -1,5 +1,5 @@
 # https://wiseodd.github.io/techblog/2016/06/21/nn-sgd/
-from sklearn.datasets import make_moons, load_iris
+from sklearn.datasets import make_moons, load_iris, make_classification
 from sklearn import datasets, model_selection
 from sklearn.utils import shuffle
 import matplotlib.pyplot as plt
@@ -180,6 +180,16 @@ def useMoons():
     doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=len(X_train), title="Stochastic Gradient Descent")
     doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=50, title="Mini Batch Gradient Descent")
 
+def useClassification():
+    X, y = make_classification(n_samples=1000, n_features=2, n_informative=2, n_redundant=0, n_repeated=0,random_state=0)
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, random_state=0)
+    plotData(X_train, y_train, "data.png")
+
+    doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=1, title="Batch Gradient Descent")
+    doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=len(X_train), title="Stochastic Gradient Descent")
+    doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=50, title="Mini Batch Gradient Descent")
+
 if __name__ == "__main__":
     file = open('metricsB.txt', 'w')
-    useMoons()
+    # useMoons()
+    useClassification()
