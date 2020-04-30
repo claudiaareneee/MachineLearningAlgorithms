@@ -75,9 +75,9 @@ Because simpler trees can often generalize data better than complex ones, specif
 |![KMeansClusteringPetalTrainingData](A/images/KMeansClusteringPetalTrainingData.png)   |![KMeansClusteringPetalTestData](A/images/KMeansClusteringPetalTestData.png)   |
 |![KMeansClusteringSepalTrainingData](A/images/KMeansClusteringSepalTrainingData.png)   |![KMeansClusteringSepalTestData](A/images/KMeansClusteringSepalTestData.png)   |
 
-### Lessons Learned
+### Biggest Takeaways
 
-This project has helped provide an understanding of different machine learning classification algorithms. For this dataset, back propagation clearly performed better than any application, but the other algorithms have their merits too. Decision trees are much easier to understand and conceptualize. K-nearest-neighbors is helpful when considering the proximity between multiple data points, but is also really slow computationally. </br>
+This project has helped provide an understanding of different machine learning classification algorithms. For this dataset, back-propagation clearly performed better than any application, but the other algorithms have their merits too. Where neural networks and back-propagation are not intuitive, decision trees are easy to understand and conceptualize. They have the downside of being more prone to over-fitting than other algorithms. Specifying a max depth could either greatly improve or hinder the performance of the algorithm. K-nearest-neighbors is helpful when considering the proximity between multiple data points, but is also really slow computationally. Choosing a proper value for ```k``` is the best way to avoid over-fitting or under-fitting.</br>
 
 ### Digit Data Comparison
 
