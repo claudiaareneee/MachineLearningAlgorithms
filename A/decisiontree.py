@@ -1,4 +1,5 @@
 # pylint: disable=maybe-no-member
+# sources: https://medium.com/@haydar_ai/learning-data-science-day-21-decision-tree-on-iris-dataset-267f3219a7fa
 from sklearn import tree
 import graphviz 
 

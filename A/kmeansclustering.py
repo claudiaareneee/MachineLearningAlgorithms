@@ -1,3 +1,4 @@
+# Sources: https://constantgeeks.com/2017/01/11/playing-with-iris-data-kmeans-clustering-in-python/
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import numpy as np

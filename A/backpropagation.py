@@ -1,3 +1,4 @@
+# Sources: https://stackabuse.com/introduction-to-neural-networks-with-scikit-learn/
 from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import classification_report, confusion_matrix

@@ -1,4 +1,8 @@
 # pylint: disable=maybe-no-member
+# Sources:  http://stephanie-w.github.io/brainscribble/classification-algorithms-on-iris-dataset.html, 
+#           https://constantgeeks.com/2017/01/11/playing-with-iris-data-kmeans-clustering-in-python/, 
+#           https://stackabuse.com/introduction-to-neural-networks-with-scikit-learn/,
+#           https://medium.com/codebagng/basic-analysis-of-the-iris-data-set-using-python-2995618a6342
 from sklearn import datasets, model_selection
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 import matplotlib.pyplot as plt
