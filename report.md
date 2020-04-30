@@ -77,7 +77,7 @@ Because simpler trees can often generalize data better than complex ones, specif
 
 ### Lessons Learned
 
-This project has helped provide an understanding of different machine learning classification algorithms. For this dataset, back propagation clearly performed better than any application, but the other algorithms have their merits too.</br>
+This project has helped provide an understanding of different machine learning classification algorithms. For this dataset, back propagation clearly performed better than any application, but the other algorithms have their merits too. Decision trees are much easier to understand and conceptualize. K-nearest-neighbors is helpful when considering the proximity between multiple data points, but is also really slow computationally. </br>
 
 ### Digit Data Comparison
 
