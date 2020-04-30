@@ -24,7 +24,7 @@ For each algorithm, the Iris data set was split into test data and training data
 
 ### Results
 
-_Which classification learning algorithm performed best?_
+_Which classification learning algorithm performed best?_</br>
 *For the graphs in this section, orange represents Sentosa, cyan represents Versicolor, and blue represents Virginica.*
 
 **Decision Tree Learning** The first algorithm implemented in this application was decision tree learning. Decision tree learning is a type of supervised learning where the samples are split based on the value of attributes in order to classify each sample. In general, simpler trees are better than complex ones because they tend to generalize the problem better, and choosing the correct attributes can lead to simpler trees. Fitting the tree with the training data and all four attributes (petal width and height and sepal width and height) produced the following tree. Decision nodes begin with a constraint. For example, the root node begins with ```X[2] <= 2.45```. Leaf nodes show the total number of samples in each category. Of the training data with a petal length of less than or equal to 2.45, all 42 samples were in the first category, Sentosa. This tree shows how attributes can be used to categorize data.</br>
@@ -52,19 +52,14 @@ Because simpler trees can often generalize data better than complex ones, specif
 |![KNearestNeighborsPetalTrainingData](A/images/KNearestNeighborsPetalTrainingData.png) |![KNearestNeighborsPetalTestData](A/images/KNearestNeighborsPetalTestData.png) |
 |![KNearestNeighborsSepalTrainingData](A/images/KNearestNeighborsSepalTrainingData.png) |![KNearestNeighborsSepalTestData](A/images/KNearestNeighborsSepalTestData.png) |
 
-**K-means Clustering** The third algorithm implemented in this application was the k-means clustering algorithm. Unlike the first two examples, this algorithm is unsupervised. This means that the training data passed in does not include the categories the training data belong to. Instead of using known categories of the data, this algorithm defines its own categories. In k-means clustering, ```k``` refers to the number of clusters created and ```k``` centroids. This algorithm has two steps. The first is to assign datapoints to a centroid (usually using Euclidean distance).The second is to update the centroid to be in the center of all of its assigned datapoints. When the clusters stop moving and datapoints stop switching categories, the algorithm is complete. When preforming this algoritm on the Iris dataset, it works suprisingly well for petal data, and has a few errors with sepal data. This algorithm is interesting because it shows that the categories can be derrived even without the knowledge that the categories exist.</br>
-
-|Training Samples                                                                 |Test Samples                                                                   |
-|:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
-|![KMeansClusteringPetalTrainingData](A/images/KMeansClusteringPetalTrainingData.png)   |![KMeansClusteringPetalTestData](A/images/KMeansClusteringPetalTestData.png)   |
-|![KMeansClusteringSepalTrainingData](A/images/KMeansClusteringSepalTrainingData.png)   |![KMeansClusteringSepalTestData](A/images/KMeansClusteringSepalTestData.png)   |
-
-**Back-propagation**   </br>
+**Back-propagation** The third classification method used in this project was a neural network using back-propagation techniques for adjusting weights. This is another supervised classifification algorithm. In a gist, a neural network is created with a set of layers of neurons. There are input layers, output layers and hidden layers. Each neuron has a set of inputs (or dendrites) that map to an output (or axon). Each input of a neuron has an associated weight, and these weights are updated during the back-propagation step. The output of a neuron is the sum of inputs mulitplied by their weights passed through an activation function. The neural network created in this application makes use of the Sci-Kit tools. The following graphs show the effectiveness of this technique. Overall, there are less errors than found with decision trees and k-nearest-neighbors. Neural networks are effective for both known and unknown samples.</br>
 
 |Training Samples                                                                 |Test Samples                                                                   |
 |:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
 |![BackpropagationPetalTrainingData](A/images/BackpropagationPetalTrainingData.png)     |![BackpropagationPetalTestData](A/images/BackpropagationPetalTestData.png)     |
 |![BackpropagationSepalTrainingData](A/images/BackpropagationSepalTrainingData.png)     |![BackpropagationSepalTestData](A/images/BackpropagationSepalTestData.png)     |
+
+**All Together**</br>
 
 |Algorithm                      |Training Accuracy              |Test Accuracy                  |Classification report          |
 |-------------------------------|-------------------------------|-------------------------------|-------------------------------|
@@ -72,6 +67,13 @@ Because simpler trees can often generalize data better than complex ones, specif
 |Decision Tree Max Depth 4      |0.950000                       |0.933333                       |93%                            |
 |K Nearest Neighbors            |0.958333                       |0.933333                       |93%                            |
 |Back propagation               |0.975000                       |0.966667                       |97%                            |
+
+**K-means Clustering** The last algorithm implemented in this application was the k-means clustering algorithm. Unlike the other examples, this algorithm is unsupervised. This means that the training data passed in does not include the categories the training data belong to. Instead of using known categories of the data, this algorithm defines its own categories. In k-means clustering, ```k``` refers to the number of clusters created and ```k``` centroids. This algorithm has two steps. The first is to assign datapoints to a centroid (usually using Euclidean distance).The second is to update the centroid to be in the center of all of its assigned datapoints. When the clusters stop moving and datapoints stop switching categories, the algorithm is complete. When preforming this algorithm on the Iris dataset, it works suprisingly well for petal data, and has a few errors with sepal data. This algorithm is interesting because it shows that the categories can be derrived even without the knowledge that the categories exist.</br>
+
+|Training Samples                                                                 |Test Samples                                                                   |
+|:-------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------:|
+|![KMeansClusteringPetalTrainingData](A/images/KMeansClusteringPetalTrainingData.png)   |![KMeansClusteringPetalTestData](A/images/KMeansClusteringPetalTestData.png)   |
+|![KMeansClusteringSepalTrainingData](A/images/KMeansClusteringSepalTrainingData.png)   |![KMeansClusteringSepalTestData](A/images/KMeansClusteringSepalTestData.png)   |
 
 ### Lessons Learned
 
