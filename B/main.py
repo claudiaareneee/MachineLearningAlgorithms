@@ -155,20 +155,31 @@ def doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size = 50, titl
 
     file.write('Mean accuracy: {}, std: {}\n'.format(accs.mean(), accs.std()))
 
+def useIris():
+    iris = load_iris()
+    X = iris.data[0:99]
+    y = iris.target[0:99]
+    X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size = 0.20)
 
-if __name__ == "__main__":
-    file = open('metricsB.txt', 'w')
+    X_train_Sepal = X_train[:, :2]
+    X_test_Sepal = X_test[:, :2]
 
+    plotData(X_train, y_train, "data.png")
+
+    doGradientDecent(X_train_Sepal, X_test_Sepal, y_train, y_test, minibatch_size=1, title="Batch Gradient Descent")
+    doGradientDecent(X_train_Sepal, X_test_Sepal, y_train, y_test, minibatch_size=len(X_train), title="Stochastic Gradient Descent")
+    doGradientDecent(X_train_Sepal, X_test_Sepal, y_train, y_test, minibatch_size=50, title="Mini Batch Gradient Descent")
+
+def useMoons():
     X, y = make_moons(n_samples=10000, random_state=42, noise=0.1)
     X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, random_state=42)
 
-    # iris = load_iris()
-    # X = iris.data[0:99]
-    # y = iris.target[0:99]
-    # X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y, test_size = 0.20)
-
-    plotData(X, y, "data.png")
+    plotData(X_train, y_train, "data.png")
 
     doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=1, title="Batch Gradient Descent")
     doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=len(X_train), title="Stochastic Gradient Descent")
     doGradientDecent(X_train, X_test, y_train, y_test, minibatch_size=50, title="Mini Batch Gradient Descent")
+
+if __name__ == "__main__":
+    file = open('metricsB.txt', 'w')
+    useMoons()
