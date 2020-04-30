@@ -131,3 +131,18 @@ The following chart shows the performance of each algorithm. In this program, ba
 |Mean accuracy      |0.8844                                      |0.8744                                     |0.8848                                     |
 
 ## References
+
+Part A
+* [Brainscribble](http://stephanie-w.github.io/brainscribble/classification-algorithms-on-iris-dataset.html)
+* [CodeBagNg](https://medium.com/codebagng/basic-analysis-of-the-iris-data-set-using-python-2995618a6342)
+* [Haydar AI](https://medium.com/@haydar_ai/learning-data-science-day-21-decision-tree-on-iris-dataset-267f3219a7fa)
+* [Stackabuse](https://stackabuse.com/introduction-to-neural-networks-with-scikit-learn/)
+* [Stackabuse](https://stackabuse.com/k-nearest-neighbors-algorithm-in-python-and-scikit-learn/)
+* [GeeksForGeeks](https://www.geeksforgeeks.org/introduction-machine-learning-using-python/)
+* [Constantgeeks](http://constantgeeks.com/playing-with-iris-data-kmeans-clustering-in-python/)
+* [DataCamp](https://www.datacamp.com/community/tutorials/machine-learning-python)
+
+
+Part B
+
+* [Agustinus Kristiadi](https://wiseodd.github.io/techblog/2016/06/21/nn-sgd/)
